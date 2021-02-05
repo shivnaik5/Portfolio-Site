@@ -6,24 +6,24 @@ import Typed from 'react-typed';
 class Index extends React.Component {
   render() {
     return (
-      <BaseLayout className="cover">
-        <div className="main-section">
+      <BaseLayout className='cover'>
+        <div className='main-section'>
           <Container>
             <Row>
-              <Col md="6">
-                <div className="hero-section">
+              <Col md='6'>
+                <div className='hero-section'>
                   <div className={`flipper`}>
-                    <div className="back">
-                      <img className="image" src="/images/section-1.png"/>
-                      <div className="shadow-custom">
-                        <div className="shadow-inner"> </div>
+                    <div className='back'>
+                      <img className='image' src='/images/section-1.png'/>
+                      <div className='shadow-custom'>
+                        <div className='shadow-inner'> </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </Col>
-              <Col md="6" className="hero-welcome-wrapper">
-                <div className="hero-welcome-text">
+              <Col md='6' className='hero-welcome-wrapper'>
+                <div className='hero-welcome-text'>
                   <h1>
                     Hello there! I'm Shivang. Thanks for visiting!
                   </h1>
@@ -37,10 +37,29 @@ class Index extends React.Component {
                   backDelay={4000}
                   loopCount={0}
                   showCursor
-                  className="self-typed"
-                  cursorChar="|"
+                  className='self-typed'
+                  cursorChar='|'
                   loop
                 />
+              </Col>
+            </Row>
+            <Row>
+              <Col md='4'>
+                <div className='technical-experience'>
+                  <img className='image' src='/images/mn2.png' />
+                  <h1>Front End</h1>
+                  <p>Building responsive websites</p>
+                </div>
+              </Col>
+              <Col md='4'>
+              <div className='technical-experience'>
+                <h1>Back End</h1>
+              </div>
+              </Col>
+              <Col md='4'>
+              <div className='technical-experience'>
+                <h1>Databases</h1>
+              </div>
               </Col>
             </Row>
           </Container>
