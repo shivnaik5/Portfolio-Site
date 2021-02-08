@@ -53,7 +53,7 @@ const About = () => {
     <BaseLayout>
       <BasePage className='about-page'>
         <Row className='mt-5'>
-          <Col md='12' className='about-image'>
+          <Col md='12' className={`about-image ${handleFadeClassName()}`}>
             <img className='image bg' src='/images/about-bg2-lg.png'/>
             <img className='image fg' src='/images/about-fg2-lg.png'/>
           </Col>
