@@ -51,17 +51,38 @@
     // background-size: cover; /* Resize the background image to cover the entire container */
     // position: absolute;
 
+    // .bg-image {
+    //   height: 500px;
+    //   position: absolute;
+    //   margin-top: 20em;
+    //   opacity: 15%;
+    // }
+
+    // .fg-image {
+    //   height: 500px;
+    //   position: absolute;
+    //   margin-top: 20em;
+    //   // opacity: 15%;
+    // }
+
     .image {
-      height: 500px;
+      height: 550px;
       position: absolute;
-      margin-top: 20em;
-      opacity: 15%;
+      margin-top: 7em;
+
+      &.bg {
+        opacity: 15%;
+      }
+
+      &.fg {
+      }
     }
   }
 
   .headline {
     color: $white;
     text-align: center;
+    margin-top: 12em;
   }
 
   .details {
