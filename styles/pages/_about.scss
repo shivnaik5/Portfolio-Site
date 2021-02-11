@@ -92,18 +92,6 @@
     font-size: 18px;
   }
 
-  .aboutme {
-    @include animation-delay(3.6s);
-    margin-top: 55px;
-    white-space: pre-wrap;
-
-    .header {
-      font-size: 28px;
-      font-weight: bold;
-      margin-bottom: 25px;
-    }
-  }
-
   .skills-icons {
     padding-bottom: 50px;
     @include animation-delay(3.6s);
@@ -121,63 +109,6 @@
     .fade-in {
       transition: all 0.4s ease 0s;
     }
-  
-    .skills {
-      // margin: 10px;
-      // font-size: 75px;
-      border: 2.7px solid $cornflower-faded;
-      // text-align: center;
-      border-radius: 10px;
-      // line-height: 1.6;
-  
-      @include box-shadow(2px 3px 2px 1px $endeavour-faded);
-      height: 9em;
-      width: 10em;
-
-      transition: transform 0.8s;
-      transform-style: preserve-3d;
-    
-      .skill-container {
-  
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-
-        // transform: rotateY(180deg);
-       
-
-        &.flipped {
-          background-color: $endeavour-faded;
-          height: 100%;
-          
-    
-
-          .skill-details {
-            .tech {
-              font-size: 24px;
-            }
-
-            .years-exp {
-              font-size: 20px;
-              font-style: italic;
-            }
-          }
-        }
-
-        &.icon {
-          // transform: rotateY(180deg);
-          font-size: 75px;
-        }
-      }
-    
-      // &:hover {
-      //   transform: scale(1.05);
-      //   border-radius: 10px;
-      //   @include box-shadow(0px 0px 20px 0px $dodger-blue-faded);
-      //   cursor: pointer;
-      // }
-    }
     
     @media (max-width: 767px) {
       .skills {
@@ -189,50 +120,5 @@
   @keyframes fadein {
     from { opacity: 0; }
     to   { opacity: 1; }
-  }
-}
-
-
-.skc-skill-container {
-  width: 200px;
-  height: 260px;
-  border: 1px solid #CCC;
-  margin: 40px 0;
-  perspective: 600px;
-}
-
-.skc-skill-card {
-  width: 100%;
-  height: 100%;
-  transition: transform 1s;
-  transform-style: preserve-3d;
-  cursor: pointer;
-  position: relative;
-  border: 7px solid black;
-
-  &.is-flipped {
-    transform: rotateY(180deg);
-  }
-}
-
-.skc-skill-card-face {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  line-height: 260px;
-  color: white;
-  text-align: center;
-  font-weight: bold;
-  font-size: 40px;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-
-  &.front {
-    background: red;
-  }
-
-  &.back {
-    background: blue;
-    transform: rotateY(180deg);
   }
 }

@@ -1,9 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Row, Col } from 'reactstrap';
-import BaseLayout from '@/components/layouts/BaseLayout';
-import BasePage from '@/components/BasePage';
-import about from '@/public/resources/about.json';
-import icons from '@/public/resources/icons.json';
+import { Col } from 'reactstrap';
 
 const IconFace = ({ className }) => {
   return (
@@ -13,18 +9,21 @@ const IconFace = ({ className }) => {
   );
 };
 
-const DetailsFace = ({ tech, years }) => {
+const DetailsFace = ({ tech, year }) => {
+  const yearsExp = new Date().getFullYear() - year;
+  const label = (yearsExp === 1) ? 'year' : 'years';
+
   return (
     <div className='skill-card-face back'>
       <div className='card-details'>
         <div>{tech}</div>
-        <div className='years'>{years}</div>
+        <div className='years'>{`${yearsExp} ${label}`}</div>
       </div>
     </div>
   );
 };
 
-const SkillCard = ({ icon }) => {
+const SkillCard = ({ skill: { icon, tech, year }}) => {
   const [isHovering, setIsHovering] = useState(false);
   const [cardClassName, setCardClassName] = useState('');
   const [isFlipped, setIsFlipped] = useState(false);
@@ -51,22 +50,9 @@ const SkillCard = ({ icon }) => {
           onMouseLeave={handleHover(false)}
           onClick={handleOnClick()}
         >
-        
-            {/* {isFlipped ? (
-              <div className='skill-container flipped'>
-                <div className='skill-details'>
-                  <div className='tech'>C</div>
-                  <div className='years-exp'>13 years</div>
-                </div>
-              </div>
-            ) : (
-            <div className='skill-container icon'>
-              <i className={ref.current} />
-              </div>
-            )} */}
           <div className={`skill-card ${isFlipped ? 'is-flipped' : ''}`}>
             <IconFace className={ref.current} />
-            <DetailsFace tech='C' years='13 years' />
+            <DetailsFace tech={tech} year={year} years='13 years' />
           </div>
         </div>
       </Col>

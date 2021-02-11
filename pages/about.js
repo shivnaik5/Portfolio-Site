@@ -7,6 +7,7 @@ import SkillCards from '@/components/about/SkillCard/SkillCards';
 
 import about from '@/public/resources/about.json';
 import icons from '@/public/resources/icons.json';
+import skills from '@/public/resources/skills.json';
 
 const About = () => {
   useEffect(() => {
@@ -48,6 +49,7 @@ const About = () => {
         </Row>
         <SkillCards
           icons={icons}
+          skills={skills}
           fadeClassName={handleFadeClassName}
         />
       </BasePage>

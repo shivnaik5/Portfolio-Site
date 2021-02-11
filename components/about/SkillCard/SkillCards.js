@@ -2,13 +2,13 @@ import React from 'react';
 import { Row } from 'reactstrap';
 import SkillCard from './SkillCard';
 
-const SkillCards = ({ fadeClassName, icons }) => {
+const SkillCards = ({ fadeClassName, icons, skills }) => {
   return (
     <div className={`skills-icons ${fadeClassName()}`}>
-      {icons.map((items, index) => (
+      {skills.map((items, index) => (
         <Row className='skills-icons-row'>
-          {items.map(icon => (
-            <SkillCard icon={icon} />
+          {items.map(skill => (
+            <SkillCard skill={skill} />
           ))}
         </Row>
       ))}
