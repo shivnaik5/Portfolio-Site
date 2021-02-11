@@ -108,12 +108,15 @@
     padding-bottom: 50px;
     @include animation-delay(3.6s);
 
-    .row {
+    .skills-icons-row {
       justify-content: center;
       padding-top: 30px;
     }
 
-
+    .row {
+      justify-content: center;
+      padding-top: 30px;
+    }
 
     .fade-in {
       transition: all 0.4s ease 0s;
