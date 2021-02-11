@@ -35,11 +35,10 @@
 
     .icon {
       transition: 0.3s ease-out;
+      
       &:hover {
-        // color: $san-marino;
         border-radius: 50px;
         box-shadow: inset 0px 0px 20px 20px $dodger-blue-faded;
-        // background-color: yellow;
         transition: 0.3s ease-in;
       }
     }
