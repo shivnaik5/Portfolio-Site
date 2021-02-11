@@ -3,11 +3,33 @@ import { Row, Col } from 'reactstrap';
 import BaseLayout from '@/components/layouts/BaseLayout';
 import BasePage from '@/components/BasePage';
 import AboutMe from '@/components/about/AboutMe';
-import SkillCards from '@/components/about/SkillCard/SkillCards';
+import SkillCards from '@/components/about/skillcard/SkillCards';
 
 import about from '@/public/content/about.json';
-import icons from '@/public/content/icons.json';
 import skills from '@/public/content/skills.json';
+
+import { HOME_QUERY } from '@/components/queries/homeQuery';
+import { gql, useQuery } from "@apollo/client";
+import useContentQuery from '@/components/hooks/useContentQuery';
+
+const test = () => {
+  // console.log(HOME_QUERY);
+  // const { loading, error, data } = useQuery(gql`
+  // {
+  //  homeCollection {
+  //    items {
+  //      headline
+  //    }
+  //  }
+  // }`);
+  // console.log(data);
+  // console.log(error);
+  // console.log(data.homeCollection.items[0]);
+  const data = useContentQuery(HOME_QUERY);
+  console.log(data);
+
+  // console.log(process.env.CONTENTFUL_SPACE_ID);
+};
 
 const About = () => {
   useEffect(() => {
@@ -19,6 +41,9 @@ const About = () => {
       ? ''
       : 'fadein'
   );
+
+  const data = useContentQuery(HOME_QUERY);
+  console.log(data);
 
   return  (
     <BaseLayout>
@@ -48,7 +73,6 @@ const About = () => {
           </Col>
         </Row>
         <SkillCards
-          icons={icons}
           skills={skills}
           fadeClassName={handleFadeClassName}
         />

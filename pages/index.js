@@ -4,8 +4,14 @@ import Typed from 'react-typed';
 import Link from 'next/link';
 import BaseLayout from '@/components/layouts/BaseLayout';
 
+
+
 class Index extends React.Component {
+
   render() {
+
+    // test();
+
     const handleResumeBtnOnClick = e => {
       e.preventDefault();
       window.open(
