@@ -7,7 +7,7 @@ import {
   NavItem
 } from 'reactstrap';
 import Link from 'next/link';
-import links from '@/public/resources/links.json';
+import links from '@/public/content/links.json';
 
 const NavLink = ({ page, route }) => (
   <NavItem className='port-navbar-item'>

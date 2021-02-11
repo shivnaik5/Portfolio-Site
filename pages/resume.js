@@ -6,7 +6,7 @@ import {
 } from "react-vertical-timeline-component";
 import BaseLayout from '@/components/layouts/BaseLayout';
 import BasePage from '@/components/BasePage';
-import resume from '@/public/resources/resume.json';
+import resume from '@/public/content/resume.json';
 
 
 const ResumeCard = ({ company, title, date, location, content, position }) => (

@@ -5,9 +5,9 @@ import BasePage from '@/components/BasePage';
 import AboutMe from '@/components/about/AboutMe';
 import SkillCards from '@/components/about/SkillCard/SkillCards';
 
-import about from '@/public/resources/about.json';
-import icons from '@/public/resources/icons.json';
-import skills from '@/public/resources/skills.json';
+import about from '@/public/content/about.json';
+import icons from '@/public/content/icons.json';
+import skills from '@/public/content/skills.json';
 
 const About = () => {
   useEffect(() => {
