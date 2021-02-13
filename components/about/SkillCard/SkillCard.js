@@ -41,18 +41,18 @@ const SkillCard = ({ skill: { icon, tech, year }}) => {
   }
 
   return (
-    <Col xs={4} md={2}>
-      <div className={`skill-card-container ${isHovering ? 'hovered' : ''}`}
+    <div className='skill-card-container'>
+      <div className={`skill-card ${isHovering ? 'hovered' : ''}`}
         onMouseEnter={handleHover(true)}
         onMouseLeave={handleHover(false)}
         onClick={handleOnClick()}
       >
-        <div className={`skill-card ${isFlipped ? 'is-flipped' : ''}`}>
+        <div className={`skill-card-inner ${isFlipped ? 'is-flipped' : ''}`}>
           <IconFace className={ref.current} />
           <DetailsFace tech={tech} year={year} years='13 years' />
         </div>
       </div>
-    </Col>
+    </div>
   );
 };
 
