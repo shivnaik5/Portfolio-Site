@@ -66,6 +66,10 @@
     .skills-icons-row {
       justify-content: center;
       padding-top: 30px;
+      display: inline-flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 100%;
     }
 
     .row {
