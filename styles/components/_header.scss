@@ -1,11 +1,8 @@
-.absolute {
-  position: absolute;
-}
-
 .port-navbar.port-default {
   width: 100%;
   z-index: 15;
   padding: 40px;
+  position: fixed;
 
   .port-navbar {
     &-brand {
@@ -36,5 +33,12 @@
         color: #dba919;
       }
     }
+  }
+
+  &.scrolled {
+    background-color: #000b4269 !important;
+    transition: all 0.3s ease-out 0s !important;
+    box-shadow: 0px 10px 10px 0px rgba(9, 5, 29, 0.171) !important;
+    backdrop-filter: blur(15px) !important;
   }
 }

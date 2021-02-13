@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import BaseLayout from '@/components/layouts/baseLayout';
-import BasePage from '@/components/basePage';
+import BaseLayout from '@/components/layouts/BaseLayout';
+import BasePage from '@/components/BasePage';
 
 const Resumecontent = (props) => (
   <div className='resume-item'>

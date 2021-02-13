@@ -3,7 +3,8 @@
 @import './shared/colors';
 @import './shared/utils';
 @import './components/header';
-@import './components/resume';
+@import './pages/resume';
+@import './pages/about';
 
 $pattern-foreground-opacity: 0.25;
 $pattern-foreground: $complement-300;
@@ -13,7 +14,6 @@ $pattern-background: $grey-scale-light-100;
 $pattern-item-size: 5;
 
 html, body {
-  height: 100%;
   width: 100%;
   font-family: 'Montserrat', 'Helvetica';
   background-color: #00051da6;
@@ -27,6 +27,10 @@ html, body {
 .base-page {
   padding-top: 150px;
   color: whte;
+}
+
+.fixed {
+  position: fixed;
 }
 
 .absolute {
