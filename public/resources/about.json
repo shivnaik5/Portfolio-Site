@@ -1,0 +1,11 @@
+{
+  "title": "Hello, my name is Shivang",
+  "subTitle": "Software Engineer / Full Stack Developer / Aspiring Game Developer",
+  "aboutMe": [{
+    "title": "A little more about me",
+    "description": "My name is Shivang and I am an experienced software engineer and freelance developer. I have 7 years of experience building software on a variety of platforms for a multitude of projects."
+  }, {
+    "title": "My skills and proficiencies",
+    "description": "Here are a list of my technical skills"
+  }]
+}

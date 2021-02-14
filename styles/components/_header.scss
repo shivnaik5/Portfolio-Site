@@ -1,12 +1,13 @@
 .port-navbar.port-default {
   width: 100%;
   z-index: 15;
-  padding: 40px;
+  padding: 10px 40px 10px 40px;
   position: fixed;
+  transition: all 0.7s ease-out 0s;
 
   .port-navbar {
     &-brand {
-      color: white;
+      color: $white;
       font-size: 24px;
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -19,26 +20,26 @@
     }
 
     &-link {
-      color: white;
+      color: $white;
       font-weight: bold;
       letter-spacing: 0.8px;
       font-size: 18px;
       text-transform: uppercase;
 
       &.active {
-        color: #dba919;
+        color: $golden-grass;
       }
 
       &:hover, &:focus {
-        color: #dba919;
+        color: $golden-grass;
       }
     }
   }
 
   &.scrolled {
-    background-color: #000b4269 !important;
-    transition: all 0.3s ease-out 0s !important;
-    box-shadow: 0px 10px 10px 0px rgba(9, 5, 29, 0.171) !important;
-    backdrop-filter: blur(15px) !important;
+    background-color: $stratos-faded !important;
+    transition: all 0.1s ease-out 0s;
+    box-shadow: 0px 10px 10px 0px $black-pearl-faded;
+    backdrop-filter: blur(15px);
   }
 }

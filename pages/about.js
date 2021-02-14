@@ -1,30 +1,68 @@
-import React from 'react';
+import { useEffect } from 'react';
 import { Row, Col } from 'reactstrap';
 import BaseLayout from '@/components/layouts/BaseLayout';
 import BasePage from '@/components/BasePage';
+import about from '@/public/resources/about.json';
 
-const About = () => (
-  <BaseLayout>
-    <BasePage className="about-page">
-      <Row className="mt-5">
-        <Col md="6">
-          <div className="left-side">
-            <h1 className={`title fadein`}>Hello, Welcome</h1>
-            <h4 className={`subtitle fadein`}>To About Page</h4>
-            <p className={`subsubTitle fadein`}>Feel free to read short description about me.</p>
-          </div>
-        </Col>
-        <Col md="6">
-          <div className={`fadein`}>
-            <p>My name is Shivang and I am an experienced software engineer and freelance developer. </p>
-            <p>
-              I have 7 years of experience building software on a variety of platforms for a multitude of projects.
-            </p>
-          </div>
-        </Col>
-      </Row>
-    </BasePage>
-  </BaseLayout>
+const AboutMe = ({ title, description, fadeClassName }) => (
+  <div className={`aboutme ${fadeClassName()}`}>
+    <div className={`title `}>
+      <h4>{title}</h4>
+    </div>
+    <div className={`description`}>
+      <p>{description}</p>
+    </div>
+  </div>
 );
+
+const SkillCard = (prop) => {
+  return (
+      <Col xs={4} md={2} className="skills-icons">
+        <i className={`${prop.iconName} skills-icon-images`} />
+      </Col>
+  );
+}
+
+const About = () => {
+  useEffect(() => {
+    return () => window.__isAboutPageLoaded = true;
+  }, []);
+
+  const handleFadeClassName = () => (
+    (typeof window !== 'undefined' && window.__isAboutPageLoaded) ? '' : 'fadein'
+  );
+
+  return  (
+    <BaseLayout>
+      <BasePage className='about-page'>
+
+
+
+        <Row className='mt-5'>
+          <Col md='12'>
+            <div className='left-side'>
+              <h1 className={`title ${handleFadeClassName()}`}>{about.title}</h1>
+              <h4 className={`subtitle ${handleFadeClassName()}`}>{about.subTitle}</h4>
+            </div>
+          </Col>
+          <Col md='12'>
+            <div className={`right-side`}>
+              {about.aboutMe.map(element => (
+                <AboutMe
+                  {...element}
+                  fadeClassName={handleFadeClassName}
+                />
+              ))}
+            </div>
+          </Col>
+        </Row>
+        <Row style={{ justifyContent: "center", paddingBottom: "50px" }}>
+          <SkillCard iconName="devicon-cplusplus-line" />
+          <SkillCard iconName="devicon-nodejs-plain" />
+        </Row>
+      </BasePage>
+    </BaseLayout>
+  );
+};
 
 export default About;

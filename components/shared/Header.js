@@ -17,7 +17,9 @@ const NavLink = ({ page, route }) => (
 
 const NavBarBrand = () => (
   <Link href='/'>
-    <a className='navbar-brand port-navbar-brand'>Shivang Naik</a>
+    <a className='navbar-brand port-navbar-brand'>
+      <img className='image' src='/images/mn3.png' />
+    </a>
   </Link>
 );
 
@@ -30,11 +32,11 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
+      console.log('is this called????')
       setHeaderClassName(window.scrollY > 50 ? 'scrolled' : '');
-    };
+    }
 
     document.addEventListener('scroll', handleScroll);
-
     return () => document.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -42,16 +44,16 @@ const Header = () => {
 
   return (
     <div>
-        <Navbar className={`port-navbar port-default ${headerClassName} absolute`} color='transparent' dark expand='md'>
+        <Navbar className={`port-navbar port-default ${headerRef.current} absolute`} color='transparent' dark expand='md'>
           <NavBarBrand />
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className='ml-auto' navbar>
-              {links.map(element => (
+              {links.filter(link => link.active).map(link => (
                 <NavLink
-                  route={element.route}
-                  page={element.page}
-                  key={element.page}
+                  route={link.route}
+                  page={link.page}
+                  key={link.page}
                 />
               ))}
             </Nav>

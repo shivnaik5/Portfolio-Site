@@ -17,11 +17,11 @@
   {
     "page": "Projects",
     "route": "/portfolio",
-    "active": true
+    "active": false
   },
   {
     "page": "Blog",
     "route": "/blog",
-    "active": true
+    "active": false
   }
 ]
