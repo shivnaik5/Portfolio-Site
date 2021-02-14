@@ -1,7 +1,34 @@
 .technical-experience {
-  color: white;
-  text-transform: uppercase;
-  font-size: 27px;
-  margin-top: 80px;
+  color: $white;
+  margin-top: 100px;
   text-align: center;
+
+  .tagline {
+    margin: 0 auto 25px auto;
+
+    h1 {
+      font-size: 46px;
+      font-weight: bold;
+    }
+  }
+
+  .description {
+    font-size: 24px;
+    text-transform: none;
+    margin-bottom: 100px;
+  }
+
+  .developer-experience {
+    text-align: center;
+    margin-bottom: 75px;
+
+    h4 {
+      font-weight: bold;
+    }
+  }
+
+  .developer-image {
+    height: 150px;
+    margin-bottom: 25px;
+  }
 }
