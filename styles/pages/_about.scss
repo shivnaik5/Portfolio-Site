@@ -26,6 +26,14 @@
   animation-delay: $detail;
 }
 
+@mixin box-shadow($shadowType) {
+  -webkit-box-shadow: $shadowType;
+  -moz-box-shadow: $shadowType;
+  -ms-box-shadow: $shadowType;
+  -o-box-shadow: $shadowType;
+  box-shadow: $shadowType;
+}
+
 .about-page {
   padding-top: 150px;
   padding-bottom: 30px;
@@ -77,32 +85,29 @@
   }
 }
 
-.skills-icons {
-  font-size: 4.5em !important;
-  margin: 15px !important;
-  opacity: 0.93 !important;
-  border: 1.7px solid #4a79f9cc !important;
-  vertical-align: middle !important;
-  text-align: center !important;
-  border-radius: 5px !important;
-  display: table !important;
-  box-shadow: rgba(41, 8, 228, 0.753) 4px 5px 4px 3px !important;
-  overflow: hidden !important;
-  transition: all 0.4s ease 0s !important;
-}
+.skills {
+  margin: 10px;
+  font-size: 75px;
+  border: 2.7px solid $cornflower-faded;
+  text-align: center;
+  border-radius: 10px;
+  line-height: 1.6;
+  transition: all 0.4s ease 0s;
+  @include box-shadow(2px 3px 2px 1px $endeavour-faded);
 
-@media (max-width: 767px) {
-  .skills-icons {
-    margin: 10px !important;
+  .icon {
+    padding-top: 10px;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+    border-radius: 10px;
+    @include box-shadow(0px 0px 20px 0px $dodger-blue-faded);
   }
 }
 
-.skills-icons:hover {
-  transform: scale(1.05) !important;
-  overflow: hidden !important;
-  border: 2.2px solid rgba(197, 115, 230, 0.883) !important;
-}
-.skills-icon-images {
-  padding: 20px !important;
-  line-height: 1.6 !important;
+@media (max-width: 767px) {
+  .skills {
+    margin: 10px;
+  }
 }

@@ -3,6 +3,7 @@ import { Row, Col } from 'reactstrap';
 import BaseLayout from '@/components/layouts/BaseLayout';
 import BasePage from '@/components/BasePage';
 import about from '@/public/resources/about.json';
+import devicons from '@/public/resources/devicons.json';
 
 const AboutMe = ({ title, description, fadeClassName }) => (
   <div className={`aboutme ${fadeClassName()}`}>
@@ -15,10 +16,14 @@ const AboutMe = ({ title, description, fadeClassName }) => (
   </div>
 );
 
-const SkillCard = (prop) => {
+const SkillCard = ({ icon, colored }) => {
   return (
-      <Col xs={4} md={2} className="skills-icons">
-        <i className={`${prop.iconName} skills-icon-images`} />
+      <Col xs={4} md={2}>
+        <div className="skills">
+          <div className="icon">
+            <i className={`devicon-${icon} ${colored ? 'colored' : ''}`} />
+          </div>
+        </div>
       </Col>
   );
 }
@@ -35,9 +40,6 @@ const About = () => {
   return  (
     <BaseLayout>
       <BasePage className='about-page'>
-
-
-
         <Row className='mt-5'>
           <Col md='12'>
             <div className='left-side'>
@@ -57,8 +59,9 @@ const About = () => {
           </Col>
         </Row>
         <Row style={{ justifyContent: "center", paddingBottom: "50px" }}>
-          <SkillCard iconName="devicon-cplusplus-line" />
-          <SkillCard iconName="devicon-nodejs-plain" />
+          {devicons.map(icon => (
+            <SkillCard icon={icon} colored={true} />
+          ))}
         </Row>
       </BasePage>
     </BaseLayout>
