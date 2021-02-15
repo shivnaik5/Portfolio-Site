@@ -46,7 +46,7 @@ class Index extends React.Component {
             <div className='technical-experience'>
               <Row>
                 <div className='tagline'>
-                  <h1>Experience Matters</h1>
+                  <h1>An Experienced Developer</h1>
                 </div>
                 <div className='description'>
                   <p>From web services to networks to game development, having experience in a dearth of technologies is important for developers in the rapidly evolving world we live in today</p>

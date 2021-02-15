@@ -3,6 +3,7 @@
   "cplusplus-plain",
   "nodejs-plain",
   "javascript-plain",
+  "typescript-plain",
   "csharp-plain",
   "go-plain",
   "amazonwebservices-original",
@@ -13,5 +14,6 @@
   "dot-net-plain",
   "express-original",
   "react-original",
+  "redux-original",
   "docker-plain"
 ]

@@ -59,7 +59,7 @@
 
   .title {
     @include animation-delay(0.7s);
-    font-size: 42px;
+    font-size: 64px;
     font-weight: bold;
     margin-bottom: 55px;
   }
@@ -67,6 +67,7 @@
   .subtitle {
     @include animation-delay(2.2s);
     font-size: 33px;
+    white-space: pre-wrap;
   }
 
   .subsubTitle {
@@ -77,6 +78,50 @@
   .aboutme {
     @include animation-delay(3.6s);
     margin-top: 55px;
+    white-space: pre-wrap;
+
+    .header {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 25px;
+    }
+  }
+
+  .skills-icons {
+    padding-bottom: 50px;
+    @include animation-delay(3.6s);
+
+    .row {
+      justify-content: center;
+      padding-top: 30px;
+    }
+  
+    .skills {
+      margin: 10px;
+      font-size: 75px;
+      border: 2.7px solid $cornflower-faded;
+      text-align: center;
+      border-radius: 10px;
+      line-height: 1.6;
+      transition: all 0.4s ease 0s;
+      @include box-shadow(2px 3px 2px 1px $endeavour-faded);
+    
+      .icon {
+        padding-top: 10px;
+      }
+    
+      &:hover {
+        transform: scale(1.05);
+        border-radius: 10px;
+        @include box-shadow(0px 0px 20px 0px $dodger-blue-faded);
+      }
+    }
+    
+    @media (max-width: 767px) {
+      .skills {
+        margin: 10px;
+      }
+    }  
   }
 
   @keyframes fadein {
@@ -85,29 +130,3 @@
   }
 }
 
-.skills {
-  margin: 10px;
-  font-size: 75px;
-  border: 2.7px solid $cornflower-faded;
-  text-align: center;
-  border-radius: 10px;
-  line-height: 1.6;
-  transition: all 0.4s ease 0s;
-  @include box-shadow(2px 3px 2px 1px $endeavour-faded);
-
-  .icon {
-    padding-top: 10px;
-  }
-
-  &:hover {
-    transform: scale(1.05);
-    border-radius: 10px;
-    @include box-shadow(0px 0px 20px 0px $dodger-blue-faded);
-  }
-}
-
-@media (max-width: 767px) {
-  .skills {
-    margin: 10px;
-  }
-}

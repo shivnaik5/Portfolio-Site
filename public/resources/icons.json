@@ -1,0 +1,27 @@
+[
+  [
+    "c-plain",
+    "cplusplus-plain",
+    "csharp-plain"
+  ],
+  [
+    "javascript-plain",
+    "typescript-plain",
+    "go-plain",
+    "rust-plain",
+    "python-plain"
+  ],
+  [
+    "dot-net-plain",
+    "nodejs-plain",
+    "express-original",
+    "react-original",
+    "redux-original"
+  ],
+  [
+    "postgresql-plain",
+    "mongodb-plain",
+    "amazonwebservices-original",
+    "docker-plain"
+  ]
+]
