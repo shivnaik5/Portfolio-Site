@@ -3,6 +3,11 @@ import { Container, Row, Col } from 'reactstrap';
 import BaseLayout from '@/components/layouts/BaseLayout';
 import BasePage from '@/components/BasePage';
 
+import {
+  VerticalTimeline,
+  VerticalTimelineElement
+} from "react-vertical-timeline-component";
+
 const Resumecontent = (props) => (
   <div className='resume-item'>
     <h5 className={props.title ? 'resume-title' : 'resume-no-title'}>
@@ -16,19 +21,62 @@ const Resumecontent = (props) => (
     </p>
     <ul>
       {props.content.map((value, index) => (
-        <li key={index}> ‣ {value}</li>
+        <li key={index}>{value}</li>
       ))}
     </ul>
   </div>
 );
 
-// TODO: Add resume items to contentful
+// const ResumeContent = ({ position, company, location, date, content }) => (
+
+// );
+
+const Icon = () => (
+  <span className='icon' />
+);
+
+const ResumeCard = () => (
+  <VerticalTimeline className='timeline'>
+              <VerticalTimelineElement
+              //className='element'
+            ///className="vertical-timeline-element--element"
+            //date='October 2020'
+            // iconStyle={{ background: "transparent" }}
+            // icon={<Icon />}
+            position='right'
+          >
+            <div className='item'>
+              <div className="card-text">
+                <div className='company'>Convene</div>
+                <div className='date'>October 2018 - October 2020</div>
+              </div>
+              <div className="card-text">
+                <div className='title'>Software Engineer</div>
+                <div className='location'>New York, NY</div>
+              </div>
+              <ul className='details'>
+                <li>
+                Architected service-oriented backend utilizing AWS, Salesforce and third-party APIs for a consumer facing application considered the most vital project at Convene
+                </li>
+                <li>
+                Implemented services in NodeJS that range from onboarding new users, emailing members for various marketing campaigns and payment automation,
+                </li>
+                <li>
+                Developed REST API used by web and mobile applications to provide customers with a gateway into services offered by Convene
+                </li>
+              </ul>
+              
+            </div>
+          </VerticalTimelineElement>
+  </VerticalTimeline>
+);
+
 const MyResume = () => (
   <Container fluid className='resume-section'>
     <Container>
       <Row className='resume'>
         <Col md={12} className='resume-left'>
-          <h3 className='resume-title'>Work Experience</h3>
+          <h3 className='resume-title'>Relevant Experience</h3>
           <Resumecontent
             title='Convene - Software Engineer'
             location='New York, NY'
@@ -91,7 +139,11 @@ const MyResume = () => (
 
 const Resume = () => (
   <BaseLayout>
-    <BasePage>
+    <BasePage className='resume-page'>
+    <ResumeCard />
+      <Col md={12} className='resume'>
+        <div className='header'>Relevant Experience</div>
+      </Col>
       <MyResume />
     </BasePage>
   </BaseLayout>
