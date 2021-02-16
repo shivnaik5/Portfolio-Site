@@ -10,22 +10,11 @@ class Index extends React.Component {
         <div className='main-section'>
           <Container>
             <Row>
-              <Col md='6'>
-                <div className='hero-section'>
-                  <div className={`flipper`}>
-                    <div className='back'>
-                      <img className='image' src='/images/section-1.png'/>
-                      <div className='shadow-custom'>
-                        <div className='shadow-inner'> </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Col>
-              <Col md='6' className='hero-welcome-wrapper'>
-                <div className='hero-welcome-text'>
+
+            <Col md='8' className='hero-welcome-wrapper'>
+                <div className='hero-welcome-headline'>
                   <h1>
-                    Hello there! I'm Shivang. Thanks for visiting!
+                    Hello there! I'm Shivang.
                   </h1>
                 </div>
                 <Typed
@@ -41,7 +30,19 @@ class Index extends React.Component {
                   cursorChar='|'
                   loop
                 />
+                <div className='hero-welcome-text'>
+                  <h3>
+                    Going above and beyond to reach the stars
+                  </h3>
+                </div>
               </Col>
+
+              <Col md='4'>
+                <div className='hero-section'>
+                  <img className='image' src='/images/space-md.png'/>
+                </div>
+              </Col>
+
             </Row>
             <div className='technical-experience'>
               <Row>

@@ -4,6 +4,10 @@
   padding-top: 150px;
   padding-bottom: 30px;
 
+  .container {
+    max-width: 90%;
+  }
+
   .headline {
     color: $white;
     text-align: center;
@@ -22,7 +26,7 @@
   }
 
   .timeline {
-    width: 100% !important;
+    max-width: 100% !important;
     
     &::before {
       background: $san-marino
