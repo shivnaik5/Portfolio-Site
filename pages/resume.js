@@ -36,10 +36,12 @@ const Resume = () => (
     <BasePage className='resume-page'>
       <Row className='mt-5'>
         <Col md='12'>
-          <div>
-            <h1>My Work Experience</h1>
-            <p>Here's a quick look at my work experience through the years</p>
+          <div className='headline'>
+            <h1 className={`title`}>My Work Experience</h1>
+            <p className={`subtitle`}>Here's a quick look at my work experience through the years</p>
           </div>
+        </Col>
+      </Row>
       {resume.map((item, index) => (
         <ResumeCard
           key={item.company}
@@ -47,8 +49,6 @@ const Resume = () => (
           { ...item }
         />
       ))}
-      </Col>
-      </Row>
     </BasePage>
   </BaseLayout>
 );

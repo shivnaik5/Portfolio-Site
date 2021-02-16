@@ -56,13 +56,13 @@ const About = () => {
       <BasePage className='about-page'>
         <Row className='mt-5'>
           <Col md='12'>
-            <div className='left-side'>
+            <div className='headline'>
               <h1 className={`title ${handleFadeClassName()}`}>{about.title}</h1>
               <p className={`subtitle ${handleFadeClassName()}`}>{about.subTitle}</p>
             </div>
           </Col>
           <Col md='12'>
-            <div className={`right-side`}>
+            <div className={`details`}>
               {about.aboutMe.map(element => (
                 <AboutMe
                   {...element}
