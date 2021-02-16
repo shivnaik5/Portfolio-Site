@@ -1,150 +1,54 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import BaseLayout from '@/components/layouts/BaseLayout';
-import BasePage from '@/components/BasePage';
-
 import {
   VerticalTimeline,
   VerticalTimelineElement
 } from "react-vertical-timeline-component";
+import BaseLayout from '@/components/layouts/BaseLayout';
+import BasePage from '@/components/BasePage';
+import resume from '@/public/resources/resume.json';
 
-const Resumecontent = (props) => (
-  <div className='resume-item'>
-    <h5 className={props.title ? 'resume-title' : 'resume-no-title'}>
-      {props.title}
-    </h5>
-    <p>
-      <em>{props.location}</em>
-    </p>
-    <p>
-      <em>{props.date}</em>
-    </p>
-    <ul>
-      {props.content.map((value, index) => (
-        <li key={index}>{value}</li>
-      ))}
-    </ul>
-  </div>
-);
 
-// const ResumeContent = ({ position, company, location, date, content }) => (
-
-// );
-
-const Icon = () => (
-  <span className='icon' />
-);
-
-const ResumeCard = () => (
+const ResumeCard = ({ company, title, date, location, content, position }) => (
   <VerticalTimeline className='timeline'>
-              <VerticalTimelineElement
-              //className='element'
-            ///className="vertical-timeline-element--element"
-            //date='October 2020'
-            // iconStyle={{ background: "transparent" }}
-            // icon={<Icon />}
-            position='right'
-          >
-            <div className='item'>
-              <div className="card-text">
-                <div className='company'>Convene</div>
-                <div className='date'>October 2018 - October 2020</div>
-              </div>
-              <div className="card-text">
-                <div className='title'>Software Engineer</div>
-                <div className='location'>New York, NY</div>
-              </div>
-              <ul className='details'>
-                <li>
-                Architected service-oriented backend utilizing AWS, Salesforce and third-party APIs for a consumer facing application considered the most vital project at Convene
-                </li>
-                <li>
-                Implemented services in NodeJS that range from onboarding new users, emailing members for various marketing campaigns and payment automation,
-                </li>
-                <li>
-                Developed REST API used by web and mobile applications to provide customers with a gateway into services offered by Convene
-                </li>
-              </ul>
-              
-            </div>
-          </VerticalTimelineElement>
+    <VerticalTimelineElement position={position || 'right'}>
+      <div className='item'>
+        <div className="card-text">
+          <span className='company'>{company}</span>
+          <span className='date'>{date}</span>
+        </div>
+        <div className="card-text">
+          <span className='title'>{title}</span>
+          <span className='location'>{location}</span>
+        </div>
+        <ul className='details'>
+          {content.map((item, index) => (
+            <li key={`${company} - ${index}`}>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </VerticalTimelineElement>
   </VerticalTimeline>
-);
-
-const MyResume = () => (
-  <Container fluid className='resume-section'>
-    <Container>
-      <Row className='resume'>
-        <Col md={12} className='resume-left'>
-          <h3 className='resume-title'>Relevant Experience</h3>
-          <Resumecontent
-            title='Convene - Software Engineer'
-            location='New York, NY'
-            date='October 2018 - October 2020'
-            content={[
-              'Architected service-oriented backend utilizing AWS, Salesforce and third-party APIs for a consumer facing application considered the most vital project at Convene',
-              'Implemented services in NodeJS that range from onboarding new users, emailing members for various marketing campaigns and payment automation',
-              'Developed REST API used by web and mobile applications to provide customers with a gateway into services offered by Convene'
-            ]}
-          />
-          <Resumecontent
-            title='Clockwork Labs - Contractor'
-            location='Remote'
-            date='August 2020 - September 2020'
-            content={[
-              'Wrote Unity script to overlay mini-map icons at various points of interest',
-              'Updated player resource gathering interactions to include inventory equipment'
-            ]}
-          />
-          <Resumecontent
-            title='Paperspace - Software Engineer'
-            location='New York, NY'
-            date='June 2015 - October 2018'
-            content={[
-              'Developed and maintained a React web application that served as the point of entry for users to access core product offerings',
-              'Maintained a public API to allow developers to integrate Paperspace products into their own workflows or applications',
-              'Implemented a server application in Go to allow users to manage Docker images',
-              'Ensured servers are functional and performing as required using configuration management tools such as SaltStack and building a logging solution in-house',
-              'Spearheaded the design and development of a Windows software agent to capture and encode H.264 video data from server using the NVIDIA Capture API',
-              'Utilized Opus codec to encode and decode audio data for playback in client application for an enhanced end-user experience',
-              'Streamed captured audio/video data to a client application and processed mouse and keyboard input events through the development of a WebSocket server written in C#'
-            ]}
-          />
-          <Resumecontent
-            title='Bauer Controls - Systems Programmer'
-            location='Plymouth, MI'
-            date='August 2020 - September 2020'
-            content={[
-              'Developed application for General Motors to digitize and maintain test procedure records used in electric battery assembly ',
-              'Implemented a testing application for field engineers allowing them to efficiently collect and analyze data'
-            ]}
-          />
-        </Col>
-        <Col md={12} className='resume-left'>
-          <h3 className='resume-title'>Education</h3>
-          <Resumecontent
-            title='University of Michigan'
-            location='Ann Arbor, MI'
-            date='May 2014'
-            content={[
-              'B.S. Computer Engineering',
-              'B.S. Aerospace Engineering'
-            ]}
-          />
-        </Col>
-      </Row>
-    </Container>
-  </Container>
 );
 
 const Resume = () => (
   <BaseLayout>
     <BasePage className='resume-page'>
-    <ResumeCard />
-      <Col md={12} className='resume'>
-        <div className='header'>Relevant Experience</div>
+      <Row className='mt-5'>
+        <Col md='12'>
+          <div>
+            <h1>My Work Experience</h1>
+            <p>Here's a quick look at my work experience through the years</p>
+          </div>
+      {resume.map((item, index) => (
+        <ResumeCard
+          key={item.company}
+          position={index % 2 === 0 ? 'left' : 'right'}
+          { ...item }
+        />
+      ))}
       </Col>
-      <MyResume />
+      </Row>
     </BasePage>
   </BaseLayout>
 );
