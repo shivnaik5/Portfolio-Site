@@ -24,7 +24,13 @@ html, body {
 }
 
 .container {
-  max-width: 70%;
+  max-width: 60%;
+}
+
+@media (max-width: 1991px) {
+  .container {
+    max-width: 70%;
+  }
 }
 
 .base-page {

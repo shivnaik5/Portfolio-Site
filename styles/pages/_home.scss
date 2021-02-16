@@ -1,8 +1,8 @@
 .technical-experience {
   color: $white;
-  margin-top: 100px;
+  margin-top: 2em; // 100px;
   text-align: center;
-  margin-top: 280px;
+  // margin-top: 380px;
 
   .tagline {
     margin: 0 auto 25px auto;
@@ -35,5 +35,16 @@
   .developer-image {
     height: 150px;
     margin-bottom: 25px;
+  }
+}
+
+.hero-resume {
+  margin-top: 1em;
+  
+  &.btn {
+    padding: 8px 22px;
+    background-color: $matisse-faded;
+    border: none;
+    font-weight: bold;
   }
 }

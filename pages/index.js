@@ -1,6 +1,6 @@
 import React from 'react';
 import BaseLayout from '@/components/layouts/BaseLayout';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Button } from 'reactstrap';
 import Typed from 'react-typed';
 
 class Index extends React.Component {
@@ -9,7 +9,7 @@ class Index extends React.Component {
       <BaseLayout className='cover'>
         <div className='main-section'>
           <Container>
-            <Row>
+            <Row className='hero-container'>
 
             <Col md='8' className='hero-welcome-wrapper'>
                 <div className='hero-welcome-headline'>
@@ -35,6 +35,12 @@ class Index extends React.Component {
                     Going above and beyond to reach the stars
                   </h3>
                 </div>
+
+
+                <div className='hero-resume'>
+                <Button className='hero-resume btn'>My Resume</Button>
+                </div>
+
               </Col>
 
               <Col md='4'>
@@ -42,6 +48,7 @@ class Index extends React.Component {
                   <img className='image' src='/images/space-md.png'/>
                 </div>
               </Col>
+              
 
             </Row>
             <div className='technical-experience'>
