@@ -30,12 +30,13 @@ class Index extends React.Component {
                   cursorChar='|'
                   loop
                 />
-                <div className='hero-welcome-text'>
-                  <h3>
-                    Going above and beyond to reach the stars
-                  </h3>
-                </div>
 
+                  <div className='hero-welcome-text'>
+                    <h3>
+                      Going above and beyond to create the best possible systems and applications that perform and get the job done
+                    </h3>
+                  </div>
+   
 
                 <div className='hero-resume'>
                 <Button className='hero-resume btn'>My Resume</Button>

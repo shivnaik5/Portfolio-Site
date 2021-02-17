@@ -18,7 +18,8 @@
 }
 
 .hero-container {
-  padding-bottom: 15em;
+  padding-bottom: 9em;
+  margin-top: 7em;
 }
 
 .hero-image {
@@ -51,7 +52,7 @@
   h1 {
     color: white;
     text-transform: uppercase;
-    font-size: 56px;
+    font-size: 60px;
     margin-top: 80px;
     font-weight: bold;
     // margin-bottom: 20px
@@ -60,6 +61,7 @@
 
 .hero-welcome-text {
   margin-bottom: 20px;
+  width: 85%;
 
   h3 {
     color: white;
