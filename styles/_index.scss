@@ -20,6 +20,13 @@
 .hero-container {
   padding-bottom: 15em;
 }
+
+.hero-image {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  right: 5em;
+}
   
 .hero-section{
   h2 {
@@ -30,27 +37,12 @@
 
   perspective: 1000px;
   color: white;
-  width: 110%;
-  position: absolute;
   right: 1em;
-  top: -10%;
-
-  // &-content {
-  //   position: absolute;
-  //   bottom: 20px;
-  //   width: 360px;
-  //   left: 6%;
-  //   z-index: 1;
-
-  //   &-intro {
-  //     font-size: 17px;
-  //   }
-  // }
 }
   
 .image {
   width: auto;
-  max-width: 100%;
+  max-width: 120%;
 }
   
 .hero-welcome-headline {

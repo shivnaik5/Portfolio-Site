@@ -43,7 +43,7 @@ class Index extends React.Component {
 
               </Col>
 
-              <Col md='4'>
+              <Col md='4' className='hero-image'>
                 <div className='hero-section'>
                   <img className='image' src='/images/space-md.png'/>
                 </div>

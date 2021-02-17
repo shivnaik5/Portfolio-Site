@@ -32,7 +32,6 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      console.log('is this called????')
       setHeaderClassName(window.scrollY > 50 ? 'scrolled' : '');
     }
 
