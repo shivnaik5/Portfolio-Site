@@ -38,6 +38,23 @@
   padding-top: 150px;
   padding-bottom: 30px;
 
+  .about-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    background-image: url('../../public/images/about-bg-md.png');
+    background-color: #cccccc; /* Used if the image is unavailable */
+    height: 500px; /* You must set a specified height */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+
+    // .image {
+    //   height: 500px
+    // }
+  }
+
   .headline {
     color: $white;
     text-align: center;
