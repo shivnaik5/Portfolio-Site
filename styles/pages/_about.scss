@@ -106,7 +106,8 @@
       @include box-shadow(2px 3px 2px 1px $endeavour-faded);
     
       .icon {
-        padding-top: 10px;
+        padding-top: 150px;
+        line-height: 2;
       }
     
       &:hover {

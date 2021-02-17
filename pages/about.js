@@ -34,9 +34,7 @@ const SkillCard = ({ icon, colored }) => {
   return (
       <Col xs={4} md={2}>
         <div className="skills">
-          <div className="icon">
-            <i className={`devicon-${icon} ${colored ? 'colored' : ''}`} />
-          </div>
+          <i className={`icon devicon-${icon} ${colored ? 'colored' : ''}`} />
         </div>
       </Col>
   );
