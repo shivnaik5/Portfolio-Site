@@ -54,10 +54,10 @@
     .image {
       height: 550px;
       position: absolute;
-      margin-top: 7em;
+      margin-top: 13em;
 
       &.bg {
-        opacity: 15%;
+        opacity: 50%;
       }
     }
   }
@@ -65,7 +65,7 @@
   .headline {
     color: $white;
     text-align: center;
-    margin-top: 12em;
+    margin-top: 10em;
   }
 
   .details {

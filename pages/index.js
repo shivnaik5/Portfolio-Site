@@ -45,9 +45,11 @@ class Index extends React.Component {
               </Col>
 
               <Col md='4' className='hero-image'>
-                <div className='hero-section'>
-                  <img className='image' src='/images/space-md.png'/>
-                </div>
+                {/* <div className='hero-section'> */}
+                  {/* <img className='image' src='/images/space-md.png'/> */}
+                  <img className='image fg sway' src='/images/home-fg-lg.png' />
+                  <img className='image bg' src='/images/home-bg-lg.png' />
+                {/* </div> */}
               </Col>
               
 
