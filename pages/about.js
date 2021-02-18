@@ -53,10 +53,10 @@ const About = () => {
     <BaseLayout>
       <BasePage className='about-page'>
         <Row className='mt-5'>
-          {/* <Col md='12' className='about-image'>
+          <Col md='12' className='about-image'>
             <img className='image' src='/images/about-bg-md.png'/>
-          </Col> */}
-          <div className='about-image' />
+          </Col>
+          {/* <div className='about-image' /> */}
         </Row>
         <Row className='mt-5'>
           <Col md='12'>

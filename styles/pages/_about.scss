@@ -43,16 +43,20 @@
     justify-content: center;
     align-items: center;
     
-    background-image: url('../../public/images/about-bg-md.png');
-    background-color: #cccccc; /* Used if the image is unavailable */
-    height: 500px; /* You must set a specified height */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Do not repeat the image */
-    background-size: cover; /* Resize the background image to cover the entire container */
+    // background-image: url('../../public/images/about-bg-md.png');
+    // background-color: #cccccc; /* Used if the image is unavailable */
+    // height: 500px; /* You must set a specified height */
+    // background-position: center; /* Center the image */
+    // background-repeat: no-repeat; /* Do not repeat the image */
+    // background-size: cover; /* Resize the background image to cover the entire container */
+    // position: absolute;
 
-    // .image {
-    //   height: 500px
-    // }
+    .image {
+      height: 500px;
+      position: absolute;
+      margin-top: 20em;
+      opacity: 15%;
+    }
   }
 
   .headline {
