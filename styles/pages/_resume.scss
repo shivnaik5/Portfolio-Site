@@ -8,19 +8,37 @@
     max-width: 90%;
   }
 
+  .resume-image {
+    // @include animation-delay(0.3s);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .image {
+      height: 550px;
+      position: absolute;
+      margin-top: 13em;
+
+      &.bg {
+        opacity: 50%;
+      }
+    }
+  }
+
   .headline {
     color: $white;
     text-align: center;
     margin-bottom: 75px;
+    margin-top: 10em;
 
     .title {
-      font-size: 64px;
+      font-size: 90px;
       font-weight: bold;
       margin-bottom: 15px;
     }
   
     .subtitle {
-      font-size: 24px;
+      font-size: 36px;
       white-space: pre-wrap;
     }
   }
