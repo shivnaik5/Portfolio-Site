@@ -66,21 +66,21 @@ class Index extends React.Component {
               <Row>
                 <Col md='4'>
                   <div className='developer-experience'>
-                    <img className='image developer-image' src='/images/front-end-lg.png' />
+                    <img className='image developer-image' src='/images/home-fe.png' />
                     <h4>Front End</h4>
                     <p>Building responsive web applications with user experience in mind</p>
                   </div>
                 </Col>
                 <Col md='4'>
                 <div className='developer-experience'>
-                  <img className='image developer-image' src='/images/backend-lg.png' /> 
+                  <img className='image developer-image' src='/images/home-be.png' /> 
                   <h4>Back End</h4>
                   <p>Developing scalable and reliable services and APIs</p>
                 </div>
                 </Col>
                 <Col md='4'>
                 <div className='developer-experience'>
-                  <img className='image developer-image' src='/images/database-lg.png' />
+                  <img className='image developer-image' src='/images/home-db.png' />
                   <h4>Databases</h4>
                   <p>Implementing relational and NoSQL databases that are performant and resilient</p>
                 </div>
@@ -89,14 +89,14 @@ class Index extends React.Component {
               <Row>
                 <Col md={{ size: 4, offset: 2 }}>
                   <div className='developer-experience'>
-                    <img className='image developer-image' src='/images/solutions-architect-lg.png' />
+                    <img className='image developer-image' src='/images/home-sa.png' />
                     <h4>Solutions Architect</h4>
                     <p>Designing service-oriented solutions and distributed systems</p>
                   </div>
                 </Col>
                 <Col md={{ size: 4, offset: 0 }}>
                 <div className='developer-experience image'>
-                  <img className='image developer-image' src='/images/generalist-lg.png' /> 
+                  <img className='image developer-image' src='/images/home-gp.png' /> 
                   <h4>Generalist Programmer</h4>
                   <p>Knowlege of TCP/IP, Unity and Computer Vision and languages including Go, Rust and Python</p>
                 </div>
