@@ -6,6 +6,14 @@ import BaseLayout from '@/components/layouts/BaseLayout';
 
 class Index extends React.Component {
   render() {
+    const handleResumeBtnOnClick = e => {
+      e.preventDefault();
+      window.open(
+        'https://shivang-naik.s3.us-east-2.amazonaws.com/resume/Shivang+Naik+Resume.pdf',
+        '_blank'
+      );
+    };
+
     return (
       <BaseLayout className='cover'>
         <div className='main-section'>
@@ -40,7 +48,12 @@ class Index extends React.Component {
    
 
                 <div className='hero-resume'>
-                  <Button className='btn'><span className='text'>My Resume</span></Button>
+                  <Button
+                    className='btn'
+                    onClick={handleResumeBtnOnClick}
+                  >
+                    <span className='text'>My Resume</span>
+                  </Button>
                   
                 <Link href='https://www.github.com/shivnaik5'>
                   <a target='_blank' className='profile-icons'>

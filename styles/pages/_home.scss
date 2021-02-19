@@ -54,6 +54,10 @@
       top: 1px;
       position: relative;
     }
+
+    &:focus {
+      box-shadow: none;
+    }
   }
 
   .profile-icons {
