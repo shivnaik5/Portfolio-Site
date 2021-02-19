@@ -1,7 +1,8 @@
 import React from 'react';
-import BaseLayout from '@/components/layouts/BaseLayout';
 import { Container, Row, Col, Button } from 'reactstrap';
 import Typed from 'react-typed';
+import Link from 'next/link';
+import BaseLayout from '@/components/layouts/BaseLayout';
 
 class Index extends React.Component {
   render() {
@@ -39,7 +40,20 @@ class Index extends React.Component {
    
 
                 <div className='hero-resume'>
-                <Button className='hero-resume btn'>My Resume</Button>
+                  <Button className='btn'><span className='text'>My Resume</span></Button>
+                  
+                <Link href='https://www.github.com/shivnaik5'>
+                  <a target='_blank' className='profile-icons'>
+                    <i className="devicon-github-original icon" />
+                    <span className='text'>GitHub</span>
+                  </a>
+                </Link>
+                <Link href='https://www.linkedin.com/in/shivang-naik'>
+                  <a target='_blank' className='profile-icons'>
+                    <i className="devicon-linkedin-plain icon" />
+                    <span className='text'>LinkedIn</span>
+                  </a>
+                </Link>
                 </div>
 
               </Col>
