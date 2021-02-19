@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Row, Col } from 'reactstrap';
 import BaseLayout from '@/components/layouts/BaseLayout';
 import BasePage from '@/components/BasePage';
@@ -17,24 +17,60 @@ const AboutMe = ({ title, description, fadeClassName }) => (
 const SkillCardRow = ({ fadeClassName, items }) => (
   <Row className='row'>
     {items.map(icon => (
-      <SkillCard icon={icon} colored={true} />
+      <SkillCard key={`skillcard - ${icon}`} icon={icon} colored={true} />
     ))}
   </Row>
 );
 
 const SkillCards = ({ fadeClassName }) => (
   <div className={`skills-icons ${fadeClassName()}`}>
-    {icons.map(items => (
-      <SkillCardRow fadeClassName={fadeClassName} items={items} />
+    {icons.map((items, index) => (
+      <SkillCardRow key={`skillcardrow - ${index}`} fadeClassName={fadeClassName} items={items} />
     ))}
   </div>
 );
 
-const SkillCard = ({ icon, colored }) => {
+const SkillCard = ({ icon }) => {
+  const [isHovering, setIsHovering] = useState(false);
+  const [cardClassName, setCardClassName] = useState('');
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  const ref = useRef();
+  ref.current = cardClassName;
+
+  useEffect(() => {
+    let className = `icon devicon-${icon}`;
+    setCardClassName(isHovering ? `${className} colored` : className);
+  }, [isHovering]);
+
+  const handleHover = isEntering => () => setIsHovering(isEntering);
+
+  const handleOnClick = () => () => {
+    setIsFlipped(!isFlipped);
+    console.log(isFlipped)
+  }
+
   return (
       <Col xs={4} md={2}>
-        <div className="skills">
-          <i className={`icon devicon-${icon} ${colored ? 'colored' : ''}`} />
+        <div className="skills"
+          onMouseEnter={handleHover(true)}
+          onMouseLeave={handleHover(false)}
+          onClick={handleOnClick()}
+        >
+        
+            {isFlipped ? (
+              <div className='skill-container flipped'>
+                <div className='skill-details'>
+                  <div className='tech'>C</div>
+                  <div className='years-exp'>13 years</div>
+                </div>
+              </div>
+            ) : (
+            <div className='skill-container icon'>
+              <i className={ref.current} />
+              </div>
+            )}
+  
         </div>
       </Col>
   );
@@ -68,8 +104,9 @@ const About = () => {
           </Col>
           <Col md='12'>
             <div className={`details`}>
-              {about.aboutMe.map(element => (
+              {about.aboutMe.map((element, index) => (
                 <AboutMe
+                  key={`aboutme - ${index}`}
                   {...element}
                   fadeClassName={handleFadeClassName}
                 />
