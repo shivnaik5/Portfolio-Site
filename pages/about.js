@@ -74,7 +74,30 @@ const SkillCard = ({ icon }) => {
         </div>
       </Col>
   );
-}
+};
+
+const FlipCard = () => {
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  // const ref = useRef();
+  // ref.current = cardClassName;
+
+
+
+  const handleOnClick = () => () => {
+    console.log('click click clik')
+    setIsFlipped(!isFlipped);
+  };
+
+  return (
+    <div onClick={handleOnClick()} className='skc-skill-container'>
+      <div className={`skc-skill-card ${isFlipped ? 'is-flipped' : ''}`}>
+        <div className='skc-skill-card-face front' />
+        <div className='skc-skill-card-face back' />
+      </div>
+    </div>
+  );
+};
 
 const About = () => {
   useEffect(() => {
@@ -115,6 +138,7 @@ const About = () => {
           </Col>
         </Row>
         <SkillCards fadeClassName={handleFadeClassName} />
+        <FlipCard></FlipCard>
       </BasePage>
     </BaseLayout>
   );
