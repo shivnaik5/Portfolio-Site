@@ -8,6 +8,8 @@
 @import './pages/about';
 @import './pages/home';
 
+@import './components/about/skillcard';
+
 $pattern-foreground-opacity: 0.25;
 $pattern-foreground: $limed-spruce;
 $pattern-background: $gallery;

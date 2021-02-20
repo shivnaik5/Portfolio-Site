@@ -168,12 +168,12 @@
         }
       }
     
-      &:hover {
-        transform: scale(1.05);
-        border-radius: 10px;
-        @include box-shadow(0px 0px 20px 0px $dodger-blue-faded);
-        cursor: pointer;
-      }
+      // &:hover {
+      //   transform: scale(1.05);
+      //   border-radius: 10px;
+      //   @include box-shadow(0px 0px 20px 0px $dodger-blue-faded);
+      //   cursor: pointer;
+      // }
     }
     
     @media (max-width: 767px) {

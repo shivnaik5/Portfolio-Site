@@ -5,6 +5,8 @@ import BasePage from '@/components/BasePage';
 import about from '@/public/resources/about.json';
 import icons from '@/public/resources/icons.json';
 
+import SC from '@/components/about/SkillCard';
+
 const AboutMe = ({ title, description, fadeClassName }) => (
   <div className={`aboutme ${fadeClassName()}`}>
     <div className={`header`}>{title}</div>
@@ -139,6 +141,8 @@ const About = () => {
         </Row>
         <SkillCards fadeClassName={handleFadeClassName} />
         <FlipCard></FlipCard>
+        <SC icon='c-plain' />
+        <SC icon='c-plain' />
       </BasePage>
     </BaseLayout>
   );
