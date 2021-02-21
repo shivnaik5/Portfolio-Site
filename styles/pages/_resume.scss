@@ -1,4 +1,5 @@
 @import 'react-vertical-timeline-component/style.min.css';
+@import '@/styles/mixins';
 
 .resume-page {
   padding-top: 150px;
@@ -9,7 +10,9 @@
   }
 
   .resume-image {
-    // @include animation-delay(0.3s);
+    @include animation(fadein 2s);
+    @include animation-fill-mode(forwards);
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -55,10 +58,10 @@
     
       .card-text {
         line-height: 18px;
-        font-size: 12px;
+        font-size: 18px;
         display: inline-block;
         font-weight: 600;
-        margin-bottom: 3px;
+        margin-bottom: 10px;
         display: flex;
       
         .location {
@@ -69,7 +72,7 @@
       
         .company {
           float: left;
-          font-size: 14px;
+          font-size: 20px;
         }
       
         .title {
@@ -84,7 +87,7 @@
       }
     
       ul {
-        font-size: 12px;
+        font-size: 18px;
         padding-left: 16px;
         text-align: justify;
         margin-top: 15px;

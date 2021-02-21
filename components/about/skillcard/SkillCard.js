@@ -40,7 +40,6 @@ const SkillCard = ({ skill: { icon, tech, year }}) => {
 
   const handleOnClick = () => () => {
     setIsFlipped(!isFlipped);
-    console.log(isFlipped)
   }
 
   return (

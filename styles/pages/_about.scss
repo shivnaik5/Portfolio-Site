@@ -1,38 +1,4 @@
-// MIXINS
-@mixin background-cover() {
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-@mixin animation($animationType) {
-  -webkit-animation: $animationType; /* Safari, Chrome and Opera > 12.1 */
-     -moz-animation: $animationType; /* Firefox < 16 */
-      -ms-animation: $animationType; /* Internet Explorer */
-       -o-animation: $animationType; /* Opera < 12.1 */
-          animation: $animationType;
-}
-
-@mixin animation-fill-mode($animationMode) {
-  -webkit-animation-fill-mode: $animationMode;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
-  -moz-animation-fill-mode: $animationMode;
-  animation-fill-mode: $animationMode;
-}
-
-@mixin animation-delay($detail) {
-  -webkit-animation-delay: $detail;
-  -moz-animation-delay: $detail;
-  animation-delay: $detail;
-}
-
-@mixin box-shadow($shadowType) {
-  -webkit-box-shadow: $shadowType;
-  -moz-box-shadow: $shadowType;
-  -ms-box-shadow: $shadowType;
-  -o-box-shadow: $shadowType;
-  box-shadow: $shadowType;
-}
+@import '@/styles/mixins';
 
 .about-page {
   padding-top: 150px;
@@ -54,7 +20,7 @@
     .image {
       height: 550px;
       position: absolute;
-      margin-top: 13em;
+      margin-top: 7em;
 
       &.bg {
         opacity: 50%;
@@ -94,6 +60,7 @@
 
   .skills-icons {
     padding-bottom: 50px;
+    margin-top: 2em;
     @include animation-delay(3.6s);
 
     .skills-icons-row {

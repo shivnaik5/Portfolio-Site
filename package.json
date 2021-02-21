@@ -11,7 +11,6 @@
   "dependencies": {
     "@apollo/client": "^3.3.11",
     "bootstrap": "4.6.0",
-    "config": "3.3.3",
     "express": "4.17.1",
     "graphql": "^15.5.0",
     "next": "10.0.6",
