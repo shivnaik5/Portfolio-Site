@@ -24,7 +24,7 @@ const About = () => {
       <BasePage className='about-page'>
         <Row className='mt-5'>
           <Col md='12' className={`about-image ${handleFadeClassName()}`}>
-            <img className='image bg' src='/images/about-page-bg2.png'/>
+            <img className='image bg' src='/images/about/about-page-bg2.png'/>
           </Col>
         </Row>
         <Row className='mt-5'>

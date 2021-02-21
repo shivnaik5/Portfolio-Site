@@ -59,8 +59,8 @@ const Home = () => {
           </div>
         </Col>
         <Col md='4' className='home-image'>
-          <img className='image fg sway' src='/images/home-fg-lg-3.png' />
-          <img className='image bg' src='/images/home-bg-lg.png' />
+          <img className='image fg sway' src='/images/home/home-fg-lg-3.png' />
+          <img className='image bg' src='/images/home/home-bg-lg.png' />
         </Col>
       </Row>
       <div className='technical-experience'>
@@ -74,7 +74,7 @@ const Home = () => {
           {home.technicalExperience.experience[0].map(item => (
             <Col md='4'>
               <div className='developer-experience'>
-                <img className='image developer-image' src={`/images/${item.image}`} /> 
+                <img className='image developer-image' src={`/images/home/${item.image}`} /> 
                 <h4>{item.role}</h4>
                 <p>{item.description}</p>
               </div>
@@ -85,7 +85,7 @@ const Home = () => {
           {home.technicalExperience.experience[1].map(item => (
             <Col md={{ size: 4, offset: item.offset }}>
               <div className='developer-experience'>
-                <img className='image developer-image' src={`/images/${item.image}`} /> 
+                <img className='image developer-image' src={`/images/home/${item.image}`} /> 
                 <h4>{item.role}</h4>
                 <p>{item.description}</p>
               </div>

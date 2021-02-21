@@ -36,10 +36,8 @@ const Resume = () => (
     <BasePage className='resume-page'>
       <Row className='mt-5'>
         <Col md='12' className={`resume-image`}>
-          <img className='image bg' src='/images/resume-page-bg-2.png'/>
-          {/* <img className='image fg' src='/images/about-page-fg-md.png'/> */}
+          <img className='image bg' src='/images/resume/resume-page-bg-2.png'/>
         </Col>
-        {/* <div className='about-image' /> */}
       </Row>
       <Row className='mt-5'>
         <Col md='12'>
