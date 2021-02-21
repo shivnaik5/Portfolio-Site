@@ -1,0 +1,21 @@
+@mixin animation-delay($detail) {
+  -webkit-animation-delay: $detail !important;
+  -moz-animation-delay: $detail !important;
+  animation-delay: $detail !important;
+}
+
+.aboutme {
+  @include animation-delay(3.6s);
+  margin-top: 55px;
+  white-space: pre-wrap;
+
+  .header {
+      font-size: 34px;
+      font-weight: bold;
+      margin-bottom: 25px;
+  }
+
+  .description {
+    font-size: 20px;
+  }
+}

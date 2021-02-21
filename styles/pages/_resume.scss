@@ -1,0 +1,123 @@
+@import 'react-vertical-timeline-component/style.min.css';
+@import '@/styles/mixins';
+
+.resume-page {
+  padding-top: 150px;
+  padding-bottom: 30px;
+
+  .container {
+    max-width: 90%;
+  }
+
+  .resume-image {
+    @include animation(fadein 2s);
+    @include animation-fill-mode(forwards);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .image {
+      height: 550px;
+      position: absolute;
+      margin-top: 13em;
+
+      &.bg {
+        opacity: 50%;
+      }
+    }
+  }
+
+  .headline {
+    color: $white;
+    text-align: center;
+    margin-bottom: 75px;
+    margin-top: 10em;
+
+    .title {
+      font-size: 90px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+  
+    .subtitle {
+      font-size: 36px;
+      white-space: pre-wrap;
+    }
+  }
+
+  .timeline {
+    max-width: 100% !important;
+    
+    &::before {
+      background: $san-marino
+    }
+  
+    .item {
+      margin-top: -2px;
+    
+      .card-text {
+        line-height: 18px;
+        font-size: 18px;
+        display: inline-block;
+        font-weight: 600;
+        margin-bottom: 10px;
+        display: flex;
+      
+        .location {
+          position: absolute;
+          right: 25px;
+          font-style: oblique;
+        }
+      
+        .company {
+          float: left;
+          font-size: 20px;
+        }
+      
+        .title {
+          font-style: oblique;
+        }
+      
+        .date {
+          position: absolute;
+          right: 25px;
+          font-style: oblique;
+        }
+      }
+    
+      ul {
+        font-size: 18px;
+        padding-left: 16px;
+        text-align: justify;
+        margin-top: 15px;
+      
+        li {
+          margin-bottom: 10px;
+        }
+      }    
+    }  
+  }  
+}
+
+.vertical-timeline-element-icon {
+  width: 16px !important;
+  height: 16px !important;
+  margin-left: -8px !important;
+  top: 23px;
+  background: $gulf-blue;
+  border: 2px solid $san-marino;
+  box-shadow: none !important;
+}
+
+.vertical-timeline-element-content {
+  background: $san-juan-faded;
+  box-shadow: 0 3px 0 $chathams-blue-faded;
+  color: $white;
+}
+
+.vertical-timeline-element-content-arrow {
+  border-right: 7px solid $san-juan-faded;
+}
+
+

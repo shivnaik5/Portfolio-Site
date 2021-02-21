@@ -1,0 +1,27 @@
+[
+  {
+    "page": "Home",
+    "route": "/",
+    "active": true
+  },
+  {
+    "page": "About",
+    "route": "/about",
+    "active": true
+  },
+  {
+    "page": "Resume",
+    "route": "/resume",
+    "active": true
+  },
+  {
+    "page": "Projects",
+    "route": "/portfolio",
+    "active": false
+  },
+  {
+    "page": "Blog",
+    "route": "/blog",
+    "active": false
+  }
+]

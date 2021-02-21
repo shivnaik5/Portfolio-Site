@@ -1,0 +1,34 @@
+@mixin background-cover() {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+@mixin animation($animationType) {
+  -webkit-animation: $animationType; /* Safari, Chrome and Opera > 12.1 */
+     -moz-animation: $animationType; /* Firefox < 16 */
+      -ms-animation: $animationType; /* Internet Explorer */
+       -o-animation: $animationType; /* Opera < 12.1 */
+          animation: $animationType;
+}
+
+@mixin animation-fill-mode($animationMode) {
+  -webkit-animation-fill-mode: $animationMode;
+  -moz-animation-fill-mode: $animationMode;
+  animation-fill-mode: $animationMode;
+}
+
+@mixin animation-delay($detail) {
+  -webkit-animation-delay: $detail;
+  -moz-animation-delay: $detail;
+  animation-delay: $detail;
+}
+
+@mixin box-shadow($shadowType) {
+  -webkit-box-shadow: $shadowType;
+  -moz-box-shadow: $shadowType;
+  -ms-box-shadow: $shadowType;
+  -o-box-shadow: $shadowType;
+  box-shadow: $shadowType;
+}

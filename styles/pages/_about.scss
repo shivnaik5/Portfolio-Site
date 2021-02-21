@@ -1,0 +1,91 @@
+@import '@/styles/mixins';
+
+.about-page {
+  padding-top: 150px;
+  padding-bottom: 30px;
+
+  .fadein {
+    opacity: 0;
+
+    @include animation(fadein 2s);
+    @include animation-fill-mode(forwards);
+  }
+
+  .about-image {
+    @include animation-delay(0.3s);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .image {
+      height: 550px;
+      position: absolute;
+      margin-top: 7em;
+
+      &.bg {
+        opacity: 50%;
+      }
+    }
+  }
+
+  .headline {
+    color: $white;
+    text-align: center;
+    margin-top: 10em;
+  }
+
+  .details {
+    margin-top: 10vh;
+    color: $white;
+    text-align: left;
+  }
+
+  .title {
+    @include animation-delay(0.7s);
+    font-size: 90px;
+    font-weight: bold;
+    margin-bottom: 55px;
+  }
+
+  .subtitle {
+    @include animation-delay(2.2s);
+    font-size: 33px;
+    white-space: pre-wrap;
+  }
+
+  .subsubTitle {
+    @include animation-delay(3.6s);
+    font-size: 18px;
+  }
+
+  .skills-icons {
+    padding-bottom: 50px;
+    margin-top: 2em;
+    @include animation-delay(3.6s);
+
+    .skills-icons-row {
+      justify-content: center;
+      padding-top: 30px;
+    }
+
+    .row {
+      justify-content: center;
+      padding-top: 30px;
+    }
+
+    .fade-in {
+      transition: all 0.4s ease 0s;
+    }
+    
+    @media (max-width: 767px) {
+      .skills {
+        margin: 10px;
+      }
+    }  
+  }
+
+  @keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+}

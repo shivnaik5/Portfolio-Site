@@ -1,0 +1,59 @@
+@import './index';
+@import './shared/fonts';
+@import './shared/colors';
+@import './shared/utils';
+@import './components/header';
+@import './components/footer';
+@import './pages/resume';
+@import './pages/about';
+
+@import './components/home/home';
+
+@import './components/about/skillcard';
+@import './components/about/aboutme';
+
+$pattern-foreground-opacity: 0.25;
+$pattern-foreground: $limed-spruce;
+$pattern-background: $gallery;
+$pattern-item-size: 5;
+
+html, body {
+  width: 100%;
+  font-family: 'Cambay', 'Montserrat', 'Helvetica';
+  background-color: $blue-charcoal-faded;
+  background-image:
+    url(
+      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='#{$pattern-item-size}' height='#{$pattern-item-size}' viewBox='0 0 4 4'%3E%3Cpath fill='#{encodecolor($pattern-foreground)}' fill-opacity='#{$pattern-foreground-opacity}' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E"
+    ),
+    url("../public/images/background-index.png");
+}
+
+.container {
+  max-width: 60%;
+}
+
+@media (max-width: 1991px) {
+  .container {
+    max-width: 70%;
+  }
+}
+
+.base-page {
+  padding-top: 150px;
+  color: $white;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.absolute {
+  position: absolute
+}
+
+.self-typed {
+  font-size: 56px;
+  color: $white;
+  font-weight: bold;
+  letter-spacing: 2px;
+}

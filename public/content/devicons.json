@@ -1,0 +1,112 @@
+[
+  "c-plain",
+  "cplusplus-plain",
+  "nodejs-plain",
+  "javascript-plain",
+  "typescript-plain",
+  "csharp-plain",
+  "go-plain",
+  "amazonwebservices-original",
+  "rust-plain",
+  "python-plain",
+  "postgresql-plain",
+  "mongodb-plain",
+  "dot-net-plain",
+  "express-original",
+  "react-original",
+  "redux-original",
+  "docker-plain",
+  [
+    {
+      "tech": "C",
+      "icon": "c-plain",
+      "year": 2007
+    },
+    {
+      "tech": "C++",
+      "icon": "cplusplus-plain",
+      "year": 2007
+    },
+    {
+      "tech": "C#",
+      "icon": "csharp-plain",
+      "year": 2008
+    }
+  ],
+  [
+    {
+      "tech": "JavaScript",
+      "icon": "javascript-plain",
+      "year": 2015
+    },
+    {
+      "tech": "TypeScript",
+      "icon": "typescript-plain",
+      "year": 2017
+    },
+    {
+      "tech": "Go",
+      "icon": "go-plain",
+      "year": 2017
+    },
+    {
+      "tech": "Rust",
+      "icon": "python-plain",
+      "year": 2020
+    },
+    {
+      "tech": "Python",
+      "icon": "python-plain",
+      "year": 2018
+    }
+  ],
+  [
+    {
+      "tech": ".NET",
+      "icon": "dot-net-plain",
+      "year": 2008
+    },
+    {
+      "tech": "Node.js",
+      "icon": "nodejs-plain",
+      "year": 2015
+    },
+    {
+      "tech": "Express.js",
+      "icon": "express-original",
+      "year": 2015
+    },
+    {
+      "tech": "React",
+      "icon": "react-original",
+      "year": 2015
+    },
+    {
+      "tech": "Redux",
+      "icon": "redux-original",
+      "year": 2015
+    }
+  ],
+  [
+    {
+      "tech": "PostgreSQL",
+      "icon": "postgresql-plain",
+      "year": 2016
+    },
+    {
+      "tech": "MongoDB",
+      "icon": "mongodb-plain",
+      "year": 2016
+    },
+    {
+      "tech": "AWS",
+      "icon": "amazonwebservices-original",
+      "year": 2017
+    },
+    {
+      "tech": "Docker",
+      "icon": "docker-plain",
+      "year": 2017
+    }
+  ]
+]
