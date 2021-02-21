@@ -6,7 +6,6 @@ import AboutMe from '@/components/about/AboutMe';
 import SkillCards from '@/components/about/SkillCard/SkillCards';
 
 import about from '@/public/content/about.json';
-import icons from '@/public/content/icons.json';
 import skills from '@/public/content/skills.json';
 
 const About = () => {
@@ -48,7 +47,6 @@ const About = () => {
           </Col>
         </Row>
         <SkillCards
-          icons={icons}
           skills={skills}
           fadeClassName={handleFadeClassName}
         />

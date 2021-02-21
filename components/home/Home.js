@@ -1,9 +1,9 @@
 import React from 'react';
-import { Container, Row, Col, Button } from 'reactstrap';
+import { Row, Col, Button } from 'reactstrap';
 import Typed from 'react-typed';
 import Link from 'next/link';
-import BaseLayout from '@/components/layouts/BaseLayout';
 import BasePage from '@/components/BasePage';
+import home from '@/public/content/home.json';
 
 const Home = () => {
   const handleResumeBtnOnClick = e => {
@@ -16,17 +16,15 @@ const Home = () => {
   
   return (
     <BasePage className='home-page'>
-      <Row className='hero-container'>
-        <Col md='8' className='hero-welcome-wrapper'>
-          <div className='hero-welcome-headline'>
+      <Row className='home-container'>
+        <Col md='8' className='home-welcome-wrapper'>
+          <div className='home-welcome-headline'>
             <h1>
-              Hello there! I'm Shivang.
+              {home.welcome.headline}
             </h1>
           </div>
           <Typed
-            strings={[
-              'Software Engineer',
-              'Full Stack Developer']}
+            strings={home.welcome.titles}
             typeSpeed={70}
             backSpeed={70}
             backDelay={4000}
@@ -36,12 +34,10 @@ const Home = () => {
             cursorChar='|'
             loop
           />
-          <div className='hero-welcome-text'>
-            <h3>
-              Going above and beyond to create the best possible systems and applications that perform and get the job done
-            </h3>
+          <div className='home-welcome-text'>
+            <h3>{home.welcome.text}</h3>
           </div>
-          <div className='hero-resume'>
+          <div className='home-resume'>
             <Button
               className='btn'
               onClick={handleResumeBtnOnClick}
@@ -62,58 +58,39 @@ const Home = () => {
             </Link>
           </div>
         </Col>
-        <Col md='4' className='hero-image'>
+        <Col md='4' className='home-image'>
           <img className='image fg sway' src='/images/home-fg-lg-3.png' />
           <img className='image bg' src='/images/home-bg-lg.png' />
         </Col>
       </Row>
       <div className='technical-experience'>
+        <div className='tagline'>
+          <h1>{home.technicalExperience.tagline}</h1>
+        </div>
+        <div className='description'>
+          <p>{home.technicalExperience.description}</p>
+        </div>
         <Row>
-          <div className='tagline'>
-            <h1>An Experienced Developer</h1>
-          </div>
-          <div className='description'>
-            <p>From web services to networks to game development, having experience in a dearth of technologies is important for developers in the rapidly evolving world we live in today</p>
-          </div>
+          {home.technicalExperience.experience[0].map(item => (
+            <Col md='4'>
+              <div className='developer-experience'>
+                <img className='image developer-image' src={`/images/${item.image}`} /> 
+                <h4>{item.role}</h4>
+                <p>{item.description}</p>
+              </div>
+            </Col>
+          ))}
         </Row>
         <Row>
-          <Col md='4'>
-            <div className='developer-experience'>
-              <img className='image developer-image' src='/images/home-fe.png' />
-              <h4>Front End</h4>
-              <p>Building responsive web applications with user experience in mind</p>
-            </div>
-          </Col>
-          <Col md='4'>
-          <div className='developer-experience'>
-            <img className='image developer-image' src='/images/home-be.png' /> 
-            <h4>Back End</h4>
-            <p>Developing scalable and reliable services and APIs</p>
-          </div>
-          </Col>
-          <Col md='4'>
-          <div className='developer-experience'>
-            <img className='image developer-image' src='/images/home-db.png' />
-            <h4>Databases</h4>
-            <p>Implementing relational and NoSQL databases that are performant and resilient</p>
-          </div>
-          </Col>
-        </Row>
-        <Row>
-          <Col md={{ size: 4, offset: 2 }}>
-            <div className='developer-experience'>
-              <img className='image developer-image' src='/images/home-sa.png' />
-              <h4>Solutions Architect</h4>
-              <p>Designing service-oriented solutions and distributed systems</p>
-            </div>
-          </Col>
-          <Col md={{ size: 4, offset: 0 }}>
-          <div className='developer-experience image'>
-            <img className='image developer-image' src='/images/home-gp.png' /> 
-            <h4>Generalist Programmer</h4>
-            <p>Knowlege of TCP/IP, Unity and Computer Vision and languages including Go, Rust and Python</p>
-          </div>
-          </Col>
+          {home.technicalExperience.experience[1].map(item => (
+            <Col md={{ size: 4, offset: item.offset }}>
+              <div className='developer-experience'>
+                <img className='image developer-image' src={`/images/${item.image}`} /> 
+                <h4>{item.role}</h4>
+                <p>{item.description}</p>
+              </div>
+            </Col>
+          ))}
         </Row>
       </div>
     </BasePage>

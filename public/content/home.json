@@ -1,0 +1,47 @@
+{
+  "welcome": {
+    "headline": "Hello there! I'm Shivang.",
+    "titles": [
+      "Software Engineer",
+      "Full Stack Developer"
+    ],
+    "text": "Going above and beyond to create the best possible systems and applications that perform and get the job done"
+  },
+  "technicalExperience": {
+    "tagline": "An Experienced Developer",
+    "description": "From web services to networks to game development, having experience in a dearth of technologies is important for developers in the rapidly evolving world we live in today",
+    "experience": [
+      [
+        {
+          "role": "Front End",
+          "description": "Building responsive web applications with user experience in mind",
+          "image": "home-fe.png"
+        },
+        {
+          "role": "Back End",
+          "description": "Developing scalable and reliable services and APIs",
+          "image": "home-be.png"
+        },
+        {
+          "role": "Databases",
+          "description": "Implementing relational and NoSQL databases that are performant and resilient",
+          "image": "home-db.png"
+        }
+      ],
+      [
+        {
+          "role": "Solutions Architect",
+          "description": "Designing service-oriented solutions and distributed systems",
+          "image": "home-sa.png",
+          "offset": 2
+        },
+        {
+          "role": "Generalist Programmer",
+          "description": "Knowlege of TCP/IP, Unity and Computer Vision and languages including Go, Rust and Python",
+          "image": "home-gp.png",
+          "offset": 0
+        }
+      ]
+    ]
+  }
+}
