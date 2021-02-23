@@ -34,7 +34,7 @@ const About = () => {
               <p className={`subtitle ${handleFadeClassName()}`}>{about.subTitle}</p>
             </div>
           </Col>
-          <Col md='12'>
+          <Col md='12' className='about-details'>
             <div className={`details`}>
               {about.aboutMe.map((element, index) => (
                 <AboutMe

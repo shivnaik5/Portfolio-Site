@@ -38,6 +38,12 @@ html, body {
   }
 }
 
+@media (max-width: 991px) {
+  .container {
+    max-width: 80%;
+  }
+}
+
 .base-page {
   padding-top: 150px;
   color: $white;

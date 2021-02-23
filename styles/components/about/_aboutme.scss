@@ -15,7 +15,18 @@
       margin-bottom: 25px;
   }
 
+
   .description {
     font-size: 20px;
+  }
+
+  @media (max-width: 991px) {
+    .header {
+      font-size: 26px;
+    }
+
+    .description {
+      font-size: 14px;
+    }
   }
 }

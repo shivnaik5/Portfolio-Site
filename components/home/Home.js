@@ -37,7 +37,7 @@ const Home = () => {
           <div className='home-welcome-text'>
             <h3>{home.welcome.text}</h3>
           </div>
-          <div className='home-resume'>
+          <Row className='home-resume'>
             <Button
               className='btn'
               onClick={handleResumeBtnOnClick}
@@ -56,7 +56,7 @@ const Home = () => {
                 <span className='text'>LinkedIn</span>
               </a>
             </Link>
-          </div>
+          </Row>
         </Col>
         <Col md='4' className='home-image'>
           <img className='image fg sway' src='/images/home/home-fg-lg-3.png' />
