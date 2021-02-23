@@ -22,6 +22,10 @@
       position: absolute;
       margin-top: 13em;
 
+      @media (max-width: 991px) {
+        margin-top: 9em;
+      }
+
       &.bg {
         opacity: 50%;
 
