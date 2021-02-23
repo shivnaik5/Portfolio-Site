@@ -30,16 +30,23 @@ const Header = () => {
   const headerRef = useRef();
   headerRef.current = headerClassName;
 
+  const isOpenRef = useRef();
+  isOpenRef.current = isOpen;
+
+  const shouldDisplay = () => (window.scrollY > 50) || isOpenRef.current;
+
   useEffect(() => {
-    const handleScroll = () => {
-      setHeaderClassName(window.scrollY > 50 ? 'scrolled' : '');
-    }
+    const handleScroll = () => setHeaderClassName(shouldDisplay() ? 'scrolled' : '');
 
     document.addEventListener('scroll', handleScroll);
     return () => document.removeEventListener('scroll', handleScroll);
   }, []);
 
   const toggle = () => setIsOpen(!isOpen);
+
+  useEffect(() => {
+    setHeaderClassName(shouldDisplay() ? 'scrolled' : '');
+  }, [isOpen]);
 
   return (
     <div>
