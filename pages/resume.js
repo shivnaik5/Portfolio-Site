@@ -17,8 +17,8 @@ const ResumeCard = ({ company, title, date, location, content, position }) => (
           <span className='date'>{date}</span>
         </div>
         <div className="card-text">
-          <span className='title'>{title}</span>
-          <span className='location'>{location}</span>
+          {title && <span className='title'>{title}</span>}
+          <span className={title ? 'location' : 'location only'}>{location}</span>
         </div>
         <ul className='details'>
           {content.map((item, index) => (
