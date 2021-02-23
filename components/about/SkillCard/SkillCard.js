@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Col } from 'reactstrap';
 
-const IconFace = ({ className }) => {
-  return (
-    <div className='skill-card-face front'>
-      <i className={className} />
-    </div>
-  );
-};
+const IconFace = ({ className }) => (
+  <div className='skill-card-face front'>
+    <i className={className} />
+  </div>
+);
 
 const DetailsFace = ({ tech, year }) => {
   const yearsExp = new Date().getFullYear() - year;
@@ -43,18 +41,18 @@ const SkillCard = ({ skill: { icon, tech, year }}) => {
   }
 
   return (
-      <Col xs={4} md={2}>
-        <div className={`skill-card-container ${isHovering ? 'hovered' : ''}`}
-          onMouseEnter={handleHover(true)}
-          onMouseLeave={handleHover(false)}
-          onClick={handleOnClick()}
-        >
-          <div className={`skill-card ${isFlipped ? 'is-flipped' : ''}`}>
-            <IconFace className={ref.current} />
-            <DetailsFace tech={tech} year={year} years='13 years' />
-          </div>
+    <Col xs={4} md={2}>
+      <div className={`skill-card-container ${isHovering ? 'hovered' : ''}`}
+        onMouseEnter={handleHover(true)}
+        onMouseLeave={handleHover(false)}
+        onClick={handleOnClick()}
+      >
+        <div className={`skill-card ${isFlipped ? 'is-flipped' : ''}`}>
+          <IconFace className={ref.current} />
+          <DetailsFace tech={tech} year={year} years='13 years' />
         </div>
-      </Col>
+      </div>
+    </Col>
   );
 };
 
