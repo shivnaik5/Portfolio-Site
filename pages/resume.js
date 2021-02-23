@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import {
   VerticalTimeline,
   VerticalTimelineElement
@@ -7,7 +7,6 @@ import {
 import BaseLayout from '@/components/layouts/BaseLayout';
 import BasePage from '@/components/BasePage';
 import resume from '@/public/content/resume.json';
-
 
 const ResumeCard = ({ company, title, date, location, content, position }) => (
   <VerticalTimeline className='timeline'>
@@ -47,7 +46,7 @@ const Resume = () => (
           </div>
         </Col>
       </Row>
-      {resume.map((item, index) => (
+      {resume.details.map((item, index) => (
         <ResumeCard
           key={item.company}
           position={index % 2 === 0 ? 'left' : 'right'}
