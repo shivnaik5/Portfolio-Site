@@ -1,4 +1,8 @@
 .skill-card-container {
+  margin: 20px;
+}
+
+.skill-card {
   height: 9em;
   width: 10em;
   perspective: 600px;
@@ -6,9 +10,13 @@
   transition: transform 1s;
   transform-style: preserve-3d;
   display: flex;
+
+  @media (max-width: 991px) {
+    
+  }
 }
 
-.skill-card {
+.skill-card-inner {
   width: 100%;
   height: 100%;
   transition: transform 1s;

@@ -22,8 +22,16 @@
       position: absolute;
       margin-top: 13em;
 
+      @media (max-width: 991px) {
+        margin-top: 5em;
+      }
+
       &.bg {
         opacity: 50%;
+
+        @media (max-width: 991px) {
+          opacity: 30%;
+        }
       }
     }
   }
@@ -38,11 +46,19 @@
       font-size: 90px;
       font-weight: bold;
       margin-bottom: 15px;
+
+      @media (max-width: 991px) {
+        font-size: 42px;
+      }
     }
   
     .subtitle {
       font-size: 36px;
       white-space: pre-wrap;
+
+      @media (max-width: 991px) {
+        font-size: 22px;
+      }
     }
   }
 
@@ -63,16 +79,31 @@
         font-weight: 600;
         margin-bottom: 10px;
         display: flex;
+
+        @media (max-width: 991px) {
+          font-size: 13px;
+          display: block;
+        }
       
         .location {
           position: absolute;
           right: 25px;
           font-style: oblique;
+
+          &.only {
+            position: inherit;
+          }
         }
       
         .company {
           float: left;
           font-size: 20px;
+
+          @media (max-width: 991px) {
+            font-size: 14px;
+            width: 100%;
+            display: inline-block !important;
+          }
         }
       
         .title {
@@ -83,6 +114,10 @@
           position: absolute;
           right: 25px;
           font-style: oblique;
+          
+          @media (max-width: 991px) {
+            position: inherit;
+          }
         }
       }
     
@@ -91,6 +126,11 @@
         padding-left: 16px;
         text-align: justify;
         margin-top: 15px;
+
+        @media (max-width: 991px) {
+          text-align: left;
+          font-size: 14px;
+        }
       
         li {
           margin-bottom: 10px;
@@ -108,6 +148,11 @@
   background: $gulf-blue;
   border: 2px solid $san-marino;
   box-shadow: none !important;
+
+  @media (max-width: 1025px) {
+    margin-left: 12px !important;
+    top: 15px;
+  }
 }
 
 .vertical-timeline-element-content {

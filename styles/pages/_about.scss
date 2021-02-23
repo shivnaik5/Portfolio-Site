@@ -22,9 +22,27 @@
       position: absolute;
       margin-top: 7em;
 
+      @media (max-width: 991px) {
+        margin-top: 3em;
+      }
+
       &.bg {
         opacity: 50%;
+
+        @media (max-width: 991px) {
+          opacity: 30%;
+        }
       }
+    }
+  }
+
+  @media (max-width: 991px) {
+    .about-details {
+      padding: 0px;
+    }
+
+    .about-image {
+      right: 8px;
     }
   }
 
@@ -38,6 +56,10 @@
     margin-top: 10vh;
     color: $white;
     text-align: left;
+
+    @media (max-width: 991px) {
+      margin-top: 0;
+    }
   }
 
   .title {
@@ -45,12 +67,20 @@
     font-size: 90px;
     font-weight: bold;
     margin-bottom: 55px;
+
+    @media (max-width: 991px) {
+      font-size: 42px;
+    }
   }
 
   .subtitle {
     @include animation-delay(2.2s);
     font-size: 33px;
     white-space: pre-wrap;
+
+    @media (max-width: 991px) {
+      font-size: 20px;
+    }
   }
 
   .subsubTitle {
@@ -65,7 +95,10 @@
 
     .skills-icons-row {
       justify-content: center;
-      padding-top: 30px;
+      display: inline-flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 100%;
     }
 
     .row {

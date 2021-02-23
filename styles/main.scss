@@ -38,6 +38,12 @@ html, body {
   }
 }
 
+@media (max-width: 991px) {
+  .container {
+    max-width: 80%;
+  }
+}
+
 .base-page {
   padding-top: 150px;
   color: $white;
@@ -56,4 +62,12 @@ html, body {
   color: $white;
   font-weight: bold;
   letter-spacing: 2px;
+
+  @media (max-width: 1025px) {
+    font-size: 36px;
+  }
+
+  @media (max-width: 991px) {
+    font-size: 26px;
+  }
 }

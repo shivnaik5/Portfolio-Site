@@ -37,26 +37,30 @@ const Home = () => {
           <div className='home-welcome-text'>
             <h3>{home.welcome.text}</h3>
           </div>
-          <div className='home-resume'>
-            <Button
-              className='btn'
-              onClick={handleResumeBtnOnClick}
-            >
-              <span className='text'>My Resume</span>
-            </Button>
-            <Link href='https://www.github.com/shivnaik5'>
-              <a target='_blank' className='profile-icons'>
-                <i className="devicon-github-original icon" />
-                <span className='text'>GitHub</span>
-              </a>
-            </Link>
-            <Link href='https://www.linkedin.com/in/shivang-naik'>
-              <a target='_blank' className='profile-icons'>
-                <i className="devicon-linkedin-plain icon" />
-                <span className='text'>LinkedIn</span>
-              </a>
-            </Link>
-          </div>
+          <Row className='home-resume'>
+            <div className='resume-btn'>
+              <Button
+                className='btn'
+                onClick={handleResumeBtnOnClick}
+              >
+                <span className='text'>My Resume</span>
+              </Button>
+            </div>
+            <div className='home-links'>
+              <Link href='https://www.github.com/shivnaik5'>
+                <a target='_blank' className='profile-icons'>
+                  <i className="devicon-github-original icon" />
+                  <span className='text'>GitHub</span>
+                </a>
+              </Link>
+              <Link href='https://www.linkedin.com/in/shivang-naik'>
+                <a target='_blank' className='profile-icons'>
+                  <i className="devicon-linkedin-plain icon" />
+                  <span className='text'>LinkedIn</span>
+                </a>
+              </Link>
+            </div>
+          </Row>
         </Col>
         <Col md='4' className='home-image'>
           <img className='image fg sway' src='/images/home/home-fg-lg-3.png' />

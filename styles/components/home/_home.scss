@@ -17,6 +17,12 @@
     padding-bottom: 9em;
     margin-top: 7em;
 
+    @media (max-width: 991px) {
+      margin-top: 4em;
+      padding-bottom: 0px;
+    }
+    
+
     .home-welcome-wrapper {
       justify-content: flex-end;
 
@@ -29,35 +35,59 @@
           font-size: 60px;
           margin-top: 70px;
           font-weight: bold;
+          
+          @media (max-width: 991px) {
+            margin-top: 10px;
+            font-size: 43px;
+          }
         }
       }
 
       .home-welcome-text {
         margin-bottom: 20px;
         width: 85%;
+
+        @media (max-width: 991px) {
+          width: 100%;
+        }
       
         h3 {
           color: $white;
           font-size: 24px;
           margin-top: 20px;
+
+          @media (max-width: 991px) {
+            font-size:  17px;
+          }
         }
       }
 
       .home-resume {
         margin-top: 4em;
         display: flex;
+
+        .resume-btn {
+          @media (max-width: 991px) {
+            display: flex;
+            margin: 0 auto 0 auto;
+            margin-bottom: 23px;
+          }
+        }
         
         .btn {
-          padding: 8px 22px;
+          padding: 9px 22px;
           background-color: $matisse-faded;
           border: none;
           font-weight: bold;
           border-radius: 5px;
           margin-top: 0 auto;
           margin-right: 1em;
+          margin-left: 15px;
+
+ 
       
           .text {
-            top: 1px;
+            top: 2px;
             position: relative;
           }
       
@@ -65,10 +95,19 @@
             box-shadow: none;
           }
         }
+
+        .home-links {
+          vertical-align: middle;
+          display: flex;
+
+          @media (max-width: 991px) {
+            margin: 0 auto;
+          }
+        }
       
         .profile-icons {
           color: $white;
-          margin: auto 0 auto 2em;
+          margin: auto 0 auto 1em;
           padding: 8px 22px;
           border-radius: 5px;
           transition: 0.5s ease-in;
@@ -97,18 +136,38 @@
       display: flex;
       justify-content: center;
       align-items: center; 
+
+      @media (max-width: 991px) {
+        position: absolute;
+        top: 18em;
+        z-index: -1;
+      }
       
       .image {
         position: absolute;
         height: 700px;
+
+        @media (max-width: 1025px) {
+          height: 555px;
+        }
     
         &.fg {
           animation-duration: 15s;
           animation-iteration-count: infinite;
+
+          @media (max-width: 991px) {
+            animation-duration: 0s;
+            opacity: 40%;
+          }
+          
         }
     
         &.bg {
           opacity: 15%;
+
+          @media (max-width: 991px) {
+            opacity: 40%;
+          }
         } 
       }
     }
@@ -125,6 +184,10 @@
       h1 {
         font-size: 46px;
         font-weight: bold;
+
+        @media (max-width: 991px) {
+          font-size: 32px;
+        }
       }
     }
   
@@ -132,6 +195,10 @@
       font-size: 24px;
       text-transform: none;
       margin-bottom: 100px;
+
+      @media (max-width: 991px) {
+        font-size: 17px;
+      }
     }
   
     .developer-experience {
