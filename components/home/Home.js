@@ -72,7 +72,7 @@ const Home = () => {
         </div>
         <Row>
           {home.technicalExperience.experience[0].map(item => (
-            <Col md='4'>
+            <Col key={item.role} md='4'>
               <div className='developer-experience'>
                 <img className='image developer-image' src={`/images/home/${item.image}`} /> 
                 <h4>{item.role}</h4>
@@ -83,7 +83,7 @@ const Home = () => {
         </Row>
         <Row>
           {home.technicalExperience.experience[1].map(item => (
-            <Col md={{ size: 4, offset: item.offset }}>
+            <Col key={item.role} md={{ size: 4, offset: item.offset }}>
               <div className='developer-experience'>
                 <img className='image developer-image' src={`/images/home/${item.image}`} /> 
                 <h4>{item.role}</h4>
