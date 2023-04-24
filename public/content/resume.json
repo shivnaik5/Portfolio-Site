@@ -2,6 +2,20 @@
   "headline": "The Road So Far...",
   "description": "Here's a quick look at my work experience through the years",
   "details": [{
+      "company": "Resolve",
+      "title": "Software Engineer",
+      "location": "Remote",
+      "date": "March 2021 - Present",
+      "content": [
+        "Maintaining a real-time connection server using WebSockets to connect multiple users in the virtual reality application",
+        "Developed new features for a React web application to supplement users using the virtual reality application including annotation support, peer reviews, and bookmarks",
+        "Added a two-way sync service to display BIM 360 issues and update them in real-time in the web UI using server-sent events",
+        "Ensured multi-cloud support by migrating services including object storage, queues, and databases to Azure using tools such as Terraform and the Serverless Framework",
+        "Developed updated UI for virtual reality application in Unity to display user projects on the main menu",
+        "Implemented a billing and subscription service around Stripe to onboard new customers to the Resolve platform"
+      ]
+    },
+    {
       "company":"Convene",
       "title":"Software Engineer",
       "location":"New York, NY",
