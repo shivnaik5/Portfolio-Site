@@ -7,21 +7,20 @@ const IconFace = ({ className }) => (
   </div>
 );
 
-const DetailsFace = ({ tech, year }) => {
-  const yearsExp = new Date().getFullYear() - year;
-  const label = (yearsExp === 1) ? 'year' : 'years';
+const DetailsFace = ({ tech, years }) => {
+  const label = (years === 1) ? 'year' : 'years';
 
   return (
     <div className='skill-card-face back'>
       <div className='card-details'>
         <div>{tech}</div>
-        <div className='years'>{`${yearsExp} ${label}`}</div>
+        <div className='years'>{`${years} ${label}`}</div>
       </div>
     </div>
   );
 };
 
-const SkillCard = ({ skill: { icon, tech, year }}) => {
+const SkillCard = ({ skill: { icon, tech, year, years }}) => {
   const [isHovering, setIsHovering] = useState(false);
   const [cardClassName, setCardClassName] = useState('');
   const [isFlipped, setIsFlipped] = useState(false);
@@ -49,7 +48,7 @@ const SkillCard = ({ skill: { icon, tech, year }}) => {
       >
         <div className={`skill-card-inner ${isFlipped ? 'is-flipped' : ''}`}>
           <IconFace className={ref.current} />
-          <DetailsFace tech={tech} year={year} years='13 years' />
+          <DetailsFace tech={tech} year={year} years={years} />
         </div>
       </div>
     </div>
