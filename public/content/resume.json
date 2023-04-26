@@ -7,11 +7,11 @@
       "location": "Remote",
       "date": "March 2021 - Present",
       "content": [
-        "Maintaining a real-time connection server using WebSockets to connect multiple users in the virtual reality application",
-        "Developed new features for a React web application to supplement users using the virtual reality application including annotation support, peer reviews, and bookmarks",
-        "Added a two-way sync service to display BIM 360 issues and update them in real-time in the web UI using server-sent events",
-        "Ensured multi-cloud support by migrating services including object storage, queues, and databases to Azure using tools such as Terraform and the Serverless Framework",
-        "Developed updated UI for virtual reality application in Unity to display user projects on the main menu",
+        "Maintaining multiple web services including a REST API used by the application clients and a real-time connection server using WebSockets to connect multiple users in the virtual reality application",
+        "Developed new UI/UX features including annotation support, peer reviews, and bookmarks for a React web application to supplement clients using the virtual reality application",
+        "Added a two-way sync service to retrieve and update BIM 360 issues and display the changes in the web UI in real-time using server-sent events",
+        "Ensured multi-cloud support by migrating data and cloud services including object storage, queues, and databases to Azure using Terraform and the Serverless Framework",
+        "Developed an updated UI for the virtual reality application in Unity to display user projects on the main menu",
         "Implemented a billing and subscription service around Stripe to onboard new customers to the Resolve platform"
       ]
     },
@@ -21,9 +21,9 @@
       "location":"New York, NY",
       "date":"October 2018 - October 2020",
       "content": [
-        "Architected service-oriented backend utilizing AWS, Salesforce and third-party APIs for a consumer facing application considered the most vital project at Convene",
-        "Implemented services in NodeJS that range from onboarding new users, emailing members for various marketing campaigns and payment automation",
-        "Developed REST API used by web and mobile applications to provide customers with a gateway into services offered by Convene"
+        "Architected a service-oriented backend utilizing AWS, Salesforce and third-party APIs for a consumer facing application considered the most vital project at Convene at the time",
+        "Implemented services in NodeJS that ranged from onboarding new users, emailing members for various marketing campaigns, and payment automation",
+        "Developed a REST API used by the web and mobile applications to provide customers with a gateway into services offered by Convene"
       ]
     },
     {
@@ -42,13 +42,14 @@
       "location":"New York, NY",
       "date":"June 2015 - October 2018",
       "content": [
-        "Developed and maintained a React web application that served as the point of entry for users to access core product offerings",
-        "Maintained a public API to allow developers to integrate Paperspace products into their own workflows or applications",
+        "Prototyped and developed original Paperspace concept used for admission into Y Combinator Winter 2015",
+        "Developed and maintained a React web application that served as the point of entry for users to access core product offerings including accessing virtual machines and viewing and downloading machine learning build artifacts",
+        "Spearheaded the design and development of a Windows software agent to capture and encode H.264 video data from a server using the NVIDIA Capture API",
+        "Streamed captured audio/video data to a client application and processed mouse and keyboard input events through the development of a WebSocket server written in C#",
+        "Maintained a REST API to connect to client applications and allow other developers to integrate Paperspace products into their own workflows or applications",
         "Implemented a server application in Go to allow users to manage Docker images",
-        "Ensured servers are functional and performing as required using configuration management tools such as SaltStack and building a logging solution in-house",
-        "Spearheaded the design and development of a Windows software agent to capture and encode H.264 video data from server using the NVIDIA Capture API",
-        "Utilized Opus codec to encode and decode audio data for playback in client application for an enhanced end-user experience",
-        "Streamed captured audio/video data to a client application and processed mouse and keyboard input events through the development of a WebSocket server written in C#"
+        "Ensured servers were functional and performing as required using configuration management tools such as SaltStack and building a logging solution in-house",
+        "Utilized the Opus codec to encode and decode audio data for playback in the client application for an enhanced end-user experience"
       ]
     },
     {
@@ -57,6 +58,7 @@
       "location":"Plymouth, MI",
       "date":"October 2013 - May 2015",
       "content": [
+        "Hired on after completing internship to continue work on application development",
         "Developed application for General Motors to digitize and maintain test procedure records used in electric battery assembly ",
         "Implemented a testing application for field engineers allowing them to efficiently collect and analyze data"
       ]
