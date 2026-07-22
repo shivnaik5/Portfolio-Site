@@ -1,0 +1,18 @@
+---
+const { tagline, description, roles } = Astro.props;
+---
+
+<div class="mt-28 text-center">
+  <h2 class="text-2xl font-bold text-foreground sm:text-3xl">{tagline}</h2>
+  <p class="mx-auto mt-4 max-w-2xl text-muted">{description}</p>
+  <div class="mt-10 flex flex-wrap justify-center gap-3">
+    {
+      roles.map((role) => (
+        <span class="inline-flex items-center gap-2 rounded-full border border-surface bg-surface/60 px-5 py-2 text-sm font-medium text-foreground">
+          <span class="h-2 w-2 rounded-full bg-accent-warm" />
+          {role.role}
+        </span>
+      ))
+    }
+  </div>
+</div>

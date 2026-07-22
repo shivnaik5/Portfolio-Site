@@ -1,0 +1,28 @@
+---
+import HeroText from './HeroText.astro';
+import { getHomeContent } from '@/lib/content';
+
+const { welcome, photoUrl } = getHomeContent();
+---
+
+{
+  photoUrl ? (
+    <div class="relative grid gap-12 md:grid-cols-[1.2fr_1fr] md:items-center">
+      <div class="pointer-events-none absolute -left-16 -top-24 h-64 w-64 rounded-full bg-accent-warm/20 blur-3xl" />
+      <div class="relative">
+        <HeroText welcome={welcome} />
+      </div>
+      <div class="relative mx-auto h-64 w-64 overflow-hidden rounded-full border-4 border-surface shadow-lg md:h-72 md:w-72">
+        <img src={photoUrl} alt="Shivang Naik" class="h-full w-full object-cover" />
+      </div>
+    </div>
+  ) : (
+    <div class="relative mx-auto max-w-2xl text-center">
+      <div class="pointer-events-none absolute -left-16 -top-24 h-64 w-64 rounded-full bg-accent-warm/20 blur-3xl" />
+      <div class="pointer-events-none absolute -right-16 top-0 h-56 w-56 rounded-full bg-accent/10 blur-3xl" />
+      <div class="relative">
+        <HeroText welcome={welcome} align="text-center" justify="justify-center" />
+      </div>
+    </div>
+  )
+}

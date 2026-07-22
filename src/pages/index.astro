@@ -1,0 +1,19 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/home/Hero.astro';
+import RoleGrid from '@/components/home/RoleGrid.astro';
+import { getHomeContent } from '@/lib/content';
+
+const { technicalExperience } = getHomeContent();
+---
+
+<BaseLayout>
+  <div class="mx-auto max-w-6xl px-4 pb-24 pt-40 md:px-6">
+    <Hero />
+    <RoleGrid
+      tagline={technicalExperience.tagline}
+      description={technicalExperience.description}
+      roles={technicalExperience.experience}
+    />
+  </div>
+</BaseLayout>

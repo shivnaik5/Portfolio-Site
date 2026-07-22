@@ -1,0 +1,9 @@
+---
+import TimelineEntry from './TimelineEntry.astro';
+
+const { entries } = Astro.props;
+---
+
+<ol class="relative border-l-2 border-surface pl-8">
+  {entries.map((entry) => <TimelineEntry entry={entry} />)}
+</ol>

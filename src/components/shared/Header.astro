@@ -1,0 +1,73 @@
+---
+import NavLink from './NavLink.astro';
+import { getLinks } from '@/lib/content';
+
+const navLinks = getLinks().filter((link) => link.active);
+const currentPath = Astro.url.pathname;
+---
+
+<header
+  data-site-header
+  data-scrolled="false"
+  class="fixed top-0 z-50 w-full bg-transparent transition-colors duration-300 data-[scrolled=true]:bg-background/90 data-[scrolled=true]:shadow-sm data-[scrolled=true]:backdrop-blur-md"
+>
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 md:px-6">
+    <a href="/" class="font-display text-xl font-semibold text-foreground">
+      shivang<span class="text-accent-warm">.</span>
+    </a>
+
+    <ul class="hidden items-center gap-2 md:flex">
+      {navLinks.map((link) => (
+        <NavLink href={link.route} label={link.page} isActive={currentPath === link.route} />
+      ))}
+    </ul>
+
+    <button
+      type="button"
+      data-menu-toggle
+      data-open="false"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+      class="group flex flex-col gap-1.5 border-0 bg-transparent p-2 md:hidden"
+    >
+      <span class="h-0.5 w-6 bg-foreground transition-transform group-data-[open=true]:translate-y-2 group-data-[open=true]:rotate-45" />
+      <span class="h-0.5 w-6 bg-foreground transition-opacity group-data-[open=true]:opacity-0" />
+      <span class="h-0.5 w-6 bg-foreground transition-transform group-data-[open=true]:-translate-y-2 group-data-[open=true]:-rotate-45" />
+    </button>
+  </div>
+
+  <ul data-mobile-nav hidden class="flex flex-col gap-1 border-t border-surface bg-surface px-4 py-4 md:hidden">
+    {navLinks.map((link) => (
+      <NavLink href={link.route} label={link.page} isActive={currentPath === link.route} />
+    ))}
+  </ul>
+</header>
+
+<script>
+  const header = document.querySelector('[data-site-header]');
+  const toggle = document.querySelector('[data-menu-toggle]');
+  const mobileNav = document.querySelector('[data-mobile-nav]');
+
+  let isOpen = false;
+
+  const updateScrolled = () => {
+    const scrolled = window.scrollY > 50 || isOpen;
+    header.setAttribute('data-scrolled', String(scrolled));
+  };
+
+  const setOpen = (open) => {
+    isOpen = open;
+    toggle.setAttribute('data-open', String(open));
+    toggle.setAttribute('aria-expanded', String(open));
+    mobileNav.hidden = !open;
+    updateScrolled();
+  };
+
+  toggle.addEventListener('click', () => setOpen(!isOpen));
+  mobileNav.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => setOpen(false));
+  });
+
+  document.addEventListener('scroll', updateScrolled);
+  updateScrolled();
+</script>

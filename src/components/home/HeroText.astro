@@ -1,0 +1,14 @@
+---
+import HeroActions from './HeroActions.astro';
+
+const { welcome, align = 'text-left', justify = 'justify-start' } = Astro.props;
+---
+
+<div class={align}>
+  <p class="text-sm font-medium uppercase tracking-wide text-muted">
+    {welcome.titles.join(' · ')}
+  </p>
+  <h1 class="mt-4 text-4xl font-bold text-foreground sm:text-5xl">{welcome.headline}</h1>
+  <p class="mt-6 text-lg text-muted">{welcome.text}</p>
+  <HeroActions justify={justify} />
+</div>
