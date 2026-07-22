@@ -2,60 +2,218 @@
   {
     "title": "Languages",
     "skills": [
-      { "tech": "C", "icon": "c-plain", "year": 2007, "level": "intermediate" },
-      { "tech": "C++", "icon": "cplusplus-plain", "year": 2007, "level": "intermediate" },
-      { "tech": "C#", "icon": "csharp-plain", "year": 2008, "level": "intermediate" },
-      { "tech": "JavaScript", "icon": "javascript-plain", "year": 2015, "level": "advanced" },
-      { "tech": "TypeScript", "icon": "typescript-plain", "year": 2017, "level": "advanced" },
-      { "tech": "Go", "icon": "go-plain", "year": 2017, "level": "intermediate" },
-      { "tech": "Rust", "icon": "rust-plain", "year": 2020, "level": "beginner" },
-      { "tech": "Python", "icon": "python-plain", "year": 2018, "level": "intermediate" },
-      { "tech": "HTML5", "icon": "html5-plain", "level": "advanced" },
-      { "tech": "CSS3", "icon": "css3-plain", "level": "advanced" }
+      {
+        "tech": "C",
+        "icon": "c-plain",
+        "year": 2007,
+        "level": "intermediate"
+      },
+      {
+        "tech": "C++",
+        "icon": "cplusplus-plain",
+        "year": 2007,
+        "level": "intermediate"
+      },
+      {
+        "tech": "C#",
+        "icon": "csharp-plain",
+        "year": 2008,
+        "level": "intermediate"
+      },
+      {
+        "tech": "JavaScript",
+        "icon": "javascript-plain",
+        "year": 2015,
+        "level": "advanced"
+      },
+      {
+        "tech": "TypeScript",
+        "icon": "typescript-plain",
+        "year": 2017,
+        "level": "advanced"
+      },
+      {
+        "tech": "Go",
+        "icon": "go-plain",
+        "year": 2017,
+        "level": "intermediate"
+      },
+      {
+        "tech": "Rust",
+        "icon": "rust-plain",
+        "year": 2020,
+        "level": "beginner"
+      },
+      {
+        "tech": "Python",
+        "icon": "python-plain",
+        "year": 2018,
+        "level": "intermediate"
+      },
+      {
+        "tech": "HTML5",
+        "icon": "html5-plain",
+        "level": "advanced"
+      },
+      {
+        "tech": "CSS3",
+        "icon": "css3-plain",
+        "level": "advanced"
+      }
     ]
   },
   {
     "title": "Databases",
     "skills": [
-      { "tech": "PostgreSQL", "icon": "postgresql-plain", "year": 2016, "level": "intermediate" },
-      { "tech": "MongoDB", "icon": "mongodb-plain", "year": 2016, "level": "intermediate" },
-      { "tech": "Redis", "icon": "redis-plain", "level": "intermediate" },
-      { "tech": "SQLite", "icon": "sqlite-plain", "level": "intermediate" }
+      {
+        "tech": "PostgreSQL",
+        "icon": "postgresql-plain",
+        "year": 2016,
+        "level": "intermediate"
+      },
+      {
+        "tech": "MongoDB",
+        "icon": "mongodb-plain",
+        "year": 2016,
+        "level": "intermediate"
+      },
+      {
+        "tech": "Redis",
+        "icon": "redis-plain",
+        "level": "intermediate"
+      },
+      {
+        "tech": "SQLite",
+        "icon": "sqlite-plain",
+        "level": "intermediate"
+      }
     ]
   },
   {
     "title": "Frameworks & Libraries",
     "skills": [
-      { "tech": ".NET", "icon": "dot-net-plain", "year": 2008, "level": "intermediate" },
-      { "tech": "Node.js", "icon": "nodejs-plain", "year": 2015, "level": "advanced" },
-      { "tech": "Express.js", "icon": "express-original", "year": 2015, "level": "advanced" },
-      { "tech": "React", "icon": "react-original", "year": 2015, "level": "advanced" },
-      { "tech": "Redux", "icon": "redux-original", "year": 2015, "level": "advanced" },
-      { "tech": "Next.js", "icon": "nextjs-plain", "level": "intermediate" },
-      { "tech": "GraphQL", "icon": "graphql-plain", "level": "intermediate" },
-      { "tech": "Unity", "icon": "unity-plain", "level": "intermediate" },
-      { "tech": "Electron", "icon": "electron-original", "level": "intermediate" }
+      {
+        "tech": ".NET",
+        "icon": "dot-net-plain",
+        "year": 2008,
+        "level": "intermediate"
+      },
+      {
+        "tech": "Node.js",
+        "icon": "nodejs-plain",
+        "year": 2015,
+        "level": "advanced"
+      },
+      {
+        "tech": "Express.js",
+        "icon": "express-original",
+        "year": 2015,
+        "level": "advanced"
+      },
+      {
+        "tech": "React",
+        "icon": "react-original",
+        "year": 2015,
+        "level": "advanced"
+      },
+      {
+        "tech": "Redux",
+        "icon": "redux-original",
+        "year": 2015,
+        "level": "advanced"
+      },
+      {
+        "tech": "Next.js",
+        "icon": "nextjs-plain",
+        "level": "intermediate"
+      },
+      {
+        "tech": "GraphQL",
+        "icon": "graphql-plain",
+        "level": "intermediate"
+      },
+      {
+        "tech": "Unity",
+        "icon": "unity-plain",
+        "level": "intermediate"
+      },
+      {
+        "tech": "Electron",
+        "icon": "electron-original",
+        "level": "intermediate"
+      }
     ]
   },
   {
     "title": "Infrastructure & Tooling",
     "skills": [
-      { "tech": "AWS", "icon": "amazonwebservices-plain", "year": 2017, "level": "intermediate" },
-      { "tech": "Azure", "icon": "azure-plain", "level": "intermediate" },
-      { "tech": "Docker", "icon": "docker-plain", "year": 2017, "level": "intermediate" },
-      { "tech": "Kubernetes", "icon": "kubernetes-plain", "level": "intermediate" },
-      { "tech": "Terraform", "icon": "terraform-plain", "level": "intermediate" },
-      { "tech": "Git", "icon": "git-plain", "level": "advanced" },
-      { "tech": "CircleCI", "icon": "circleci-plain", "level": "intermediate" },
-      { "tech": "Jenkins", "icon": "jenkins-plain", "level": "intermediate" }
+      {
+        "tech": "AWS",
+        "icon": "amazonwebservices-plain",
+        "year": 2017,
+        "level": "intermediate"
+      },
+      {
+        "tech": "Azure",
+        "icon": "azure-plain",
+        "level": "intermediate"
+      },
+      {
+        "tech": "Docker",
+        "icon": "docker-plain",
+        "year": 2017,
+        "level": "intermediate"
+      },
+      {
+        "tech": "Kubernetes",
+        "icon": "kubernetes-plain",
+        "level": "intermediate"
+      },
+      {
+        "tech": "Terraform",
+        "icon": "terraform-plain",
+        "level": "intermediate"
+      },
+      {
+        "tech": "Git",
+        "icon": "git-plain",
+        "level": "advanced"
+      },
+      {
+        "tech": "CircleCI",
+        "icon": "circleci-plain",
+        "level": "intermediate"
+      },
+      {
+        "tech": "Jenkins",
+        "icon": "jenkins-plain",
+        "level": "intermediate"
+      }
     ]
   },
   {
     "title": "APIs & Platforms",
     "skills": [
-      { "tech": "gRPC", "icon": "grpc-plain", "level": "intermediate" },
-      { "tech": "Swagger", "icon": "swagger-plain", "level": "intermediate" },
-      { "tech": "Salesforce", "icon": "salesforce-plain", "level": "intermediate" }
+      {
+        "tech": "WebSocket",
+        "icon": "socketio-plain",
+        "level": "advanced"
+      },
+      {
+        "tech": "gRPC",
+        "icon": "grpc-plain",
+        "level": "intermediate"
+      },
+      {
+        "tech": "Swagger",
+        "icon": "swagger-plain",
+        "level": "intermediate"
+      },
+      {
+        "tech": "Salesforce",
+        "icon": "salesforce-plain",
+        "level": "intermediate"
+      }
     ]
   }
 ]

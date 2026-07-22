@@ -5,15 +5,17 @@ const projectId = import.meta.env.SANITY_PROJECT_ID;
 const dataset = import.meta.env.SANITY_DATASET ?? 'production';
 const token = import.meta.env.SANITY_READ_TOKEN;
 
-// The site builds statically, so content is fetched once at build time. `useCdn`
-// points reads at apicdn.sanity.io, which serves cached responses and keeps
-// builds fast. Reads with a token bypass the CDN, since it only caches public data.
+// The site builds statically, so content is fetched once per build — a handful of
+// requests, not per-visitor traffic. The CDN would save a few milliseconds there and
+// cost correctness: it lags a write by a few seconds, which is exactly the window a
+// deploy webhook fires in, so a build triggered by publishing can bake in the content
+// as it was *before* the publish. Visitors are served by Vercel's CDN either way.
 export const client = projectId
   ? createClient({
       projectId,
       dataset,
       apiVersion: '2024-10-01',
-      useCdn: !token,
+      useCdn: false,
       token,
     })
   : null;

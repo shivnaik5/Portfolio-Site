@@ -93,6 +93,8 @@ Navigation (`src/data/links.json`) stays local on purpose: it tracks which route
 
 Content is fetched at **build time**, so publishing a change in Sanity requires a redeploy to appear on the site. Wire up a Sanity webhook against a Vercel deploy hook to make that automatic.
 
+Reads deliberately bypass Sanity's API CDN (`useCdn: false` in [`src/lib/sanity.js`](src/lib/sanity.js)). The CDN lags a write by a few seconds — precisely the window a publish-triggered deploy fires in — so leaving it on lets a build bake in the content as it was *before* the publish that triggered it. The saving would be a few milliseconds on a handful of build-time requests; visitors are served by Vercel either way.
+
 If a rebuild still shows the old content after a change was published, the build cache is stale — clear it and build again:
 
 ```bash
