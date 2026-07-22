@@ -2,12 +2,8 @@
 @import './shared/fonts';
 @import './shared/colors';
 @import './shared/utils';
-@import './components/header';
-@import './components/footer';
 @import './pages/resume';
 @import './pages/about';
-
-@import './components/home/home';
 
 @import './components/about/skillcard';
 @import './components/about/aboutme';
@@ -55,19 +51,4 @@ html, body {
 
 .absolute {
   position: absolute
-}
-
-.self-typed {
-  font-size: 56px;
-  color: $white;
-  font-weight: bold;
-  letter-spacing: 2px;
-
-  @media (max-width: 1025px) {
-    font-size: 36px;
-  }
-
-  @media (max-width: 991px) {
-    font-size: 26px;
-  }
 }

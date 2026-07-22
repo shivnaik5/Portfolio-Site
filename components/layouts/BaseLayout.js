@@ -9,8 +9,8 @@ const BaseLayout = ({ children, className }) => {
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.9.0/devicon.min.css" />
       </Head>
       <Header />
-      <main className={`cover ${className}`}>
-        <div className="wrapper">
+      <main className={`relative overflow-hidden ${className}`}>
+        <div className="relative min-h-screen w-full">
           {children}
         </div>
       </main>
