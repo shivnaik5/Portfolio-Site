@@ -2,13 +2,13 @@
 import { getCompetencyLevel } from './competencyLevel';
 
 const { skill } = Astro.props;
-const { tech, icon, years } = skill;
-const level = getCompetencyLevel(years);
+const { tech, icon, level } = skill;
+const competency = getCompetencyLevel(level);
 ---
 
 <div
   class="group flex items-center gap-3 rounded-2xl border border-surface bg-surface/50 px-4 py-3 transition-transform duration-200 hover:scale-105"
-  aria-label={`${tech}: ${level.label}`}
+  aria-label={`${tech}: ${competency.label}`}
 >
   <i class={`devicon-${icon} text-2xl text-foreground`} aria-hidden="true" />
   <div class="flex flex-col">
@@ -16,7 +16,7 @@ const level = getCompetencyLevel(years);
     <div class="mt-1 flex gap-1">
       {
         [0, 1, 2].map((index) => {
-          const filled = index < level.dots;
+          const filled = index < competency.dots;
           return (
             <span
               class:list={[

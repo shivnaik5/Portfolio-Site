@@ -5,7 +5,7 @@ import SectionHeading from '@/components/shared/SectionHeading.astro';
 import Timeline from '@/components/resume/Timeline.astro';
 import { getResumeContent } from '@/lib/content';
 
-const resume = getResumeContent();
+const resume = await getResumeContent();
 ---
 
 <BaseLayout title="Resume — Shivang Naik">

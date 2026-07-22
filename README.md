@@ -6,6 +6,7 @@ This project was built with the following technologies:
 
 - Astro
 - Tailwind CSS
+- Sanity (CMS)
 - Vercel
 
 ## Getting Started
@@ -47,13 +48,69 @@ src/
   pages/       Routes — each .astro file becomes a page
   layouts/     Shared page shell
   components/  UI components, grouped by page/section
-  data/        JSON content for each page
-  lib/         Content helpers
+  data/        Local JSON content, and the fallback for Sanity-backed content
+  lib/         Content getters (content.js) and the Sanity client (sanity.js)
   styles/      Global CSS and Tailwind setup
 public/        Static assets served as-is (fonts, favicon)
+studio/        Sanity Studio — schemas and config, deployed separately
+scripts/       One-off maintenance scripts
 ```
 
-Page content lives in `src/data/*.json`, so most copy updates can be made without touching components.
+Home, about and navigation content lives in `src/data/*.json`, so that copy can be updated without touching components. Resume and skills content comes from Sanity — see below.
+
+## Content
+
+Resume and skills content is managed in Sanity, since those change most often. Everything goes through the getters in [`src/lib/content.js`](src/lib/content.js), which components import — they never read a data source directly.
+
+**Sanity is not required to run the site.** With `SANITY_PROJECT_ID` unset, the content layer falls back to the JSON in `src/data/`, so a fresh clone builds and runs with no setup.
+
+### Connecting Sanity
+
+1. Create a project at [sanity.io/manage](https://www.sanity.io/manage) and note the project ID.
+2. Copy `.env.example` to `.env` and fill in `SANITY_PROJECT_ID`. Separately, copy `studio/.env.example` to `studio/.env` and fill in `SANITY_STUDIO_PROJECT_ID` — the Sanity CLI reads env files from the studio directory, so both are needed.
+3. In the management console under **API → CORS origins**, add `http://localhost:3333` with credentials allowed, so the local studio can reach the dataset.
+4. Import the existing JSON content:
+
+   ```bash
+   SANITY_WRITE_TOKEN=<token> npm run sanity:migrate
+   ```
+
+   Add `--dry-run` to preview first. The token needs write access and is only used by this script — it should not be set in the deployed environment.
+
+5. Set `SANITY_PROJECT_ID` and `SANITY_DATASET` in the Vercel project settings so production builds read from Sanity.
+
+Content is fetched at **build time**, so publishing a change in Sanity requires a redeploy to appear on the site. Wire up a Sanity webhook against a Vercel deploy hook to make that automatic.
+
+If a rebuild still shows the old content after a change was published, the build cache is stale — clear it and build again:
+
+```bash
+rm -rf node_modules/.vite .astro dist && npm run build
+```
+
+On Vercel the equivalent is redeploying with the build cache disabled. This bites specifically when *only* the CMS changed and no source file did, so nothing local looks different enough to invalidate.
+
+### Editing content
+
+The studio is a standalone app in `studio/`, deployed and hosted by Sanity:
+
+```bash
+cd studio && npm install
+```
+
+```bash
+cd studio && npm run dev
+```
+
+Runs the studio locally at [http://localhost:3333](http://localhost:3333). To publish it to a `<project>.sanity.studio` URL:
+
+```bash
+cd studio && npm run deploy
+```
+
+Schemas live in `studio/schemas/`. Two things to know about the model:
+
+- The resume timeline and the skill groups are ordered by an explicit `order` field rather than by date, because the timeline order is editorial.
+- Each skill carries a `level` of `beginner`, `intermediate` or `advanced`, which maps to the 1–3 dots on the chip. Competency is set by hand rather than derived from years, since time spent with a technology isn't continuous. The `year` field records when you first used something and is not currently displayed.
 
 ## Work in Progress
 

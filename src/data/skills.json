@@ -1,112 +1,124 @@
 [
- [
-   {
-     "tech": "C",
-     "icon": "c-plain",
-     "year": 2007,
-     "years": 9
-   },
-   {
-     "tech": "C++",
-     "icon": "cplusplus-plain",
-     "year": 2007,
-     "years": 12
-   },
-   {
-     "tech": "C#",
-     "icon": "csharp-plain",
-     "year": 2008,
-     "years": 11
-   }
- ],
- [
-   {
-     "tech": "JavaScript",
-     "icon": "javascript-plain",
-     "year": 2015,
-     "years": 8
-   },
-   {
-     "tech": "TypeScript",
-     "icon": "typescript-plain",
-     "year": 2017,
-     "years": 3
-   },
-   {
-     "tech": "Go",
-     "icon": "go-plain",
-     "year": 2017,
-     "years": 4
-   },
-   {
-     "tech": "Rust",
-     "icon": "rust-plain",
-     "year": 2020,
-     "years": 2
-   },
-   {
-     "tech": "Python",
-     "icon": "python-plain",
-     "year": 2018,
-     "years": 3
-   }
- ],
- [
-   {
-     "tech": ".NET",
-     "icon": "dot-net-plain",
-     "year": 2008,
-     "years": 11
-   },
-   {
-     "tech": "Node.js",
-     "icon": "nodejs-plain",
-     "year": 2015,
-     "years": 8
-   },
-   {
-     "tech": "Express.js",
-     "icon": "express-original",
-     "year": 2015,
-     "years": 8
-   },
-   {
-     "tech": "React",
-     "icon": "react-original",
-     "year": 2015,
-     "years": 8
-   },
-   {
-     "tech": "Redux",
-     "icon": "redux-original",
-     "year": 2015,
-     "years": 8
-   }
- ],
- [
-   {
-     "tech": "PostgreSQL",
-     "icon": "postgresql-plain",
-     "year": 2016,
-     "years": 6
-   },
-   {
-     "tech": "MongoDB",
-     "icon": "mongodb-plain",
-     "year": 2016,
-     "years": 4
-   },
-   {
-     "tech": "AWS",
-     "icon": "amazonwebservices-original",
-     "year": 2017,
-     "years": 6
-   },
-   {
-     "tech": "Docker",
-     "icon": "docker-plain",
-     "year": 2017,
-     "years": 6
-   }
- ]
+  {
+    "title": "C-Family Languages",
+    "skills": [
+      {
+        "tech": "C",
+        "icon": "c-plain",
+        "year": 2007,
+        "level": "intermediate"
+      },
+      {
+        "tech": "C++",
+        "icon": "cplusplus-plain",
+        "year": 2007,
+        "level": "intermediate"
+      },
+      {
+        "tech": "C#",
+        "icon": "csharp-plain",
+        "year": 2008,
+        "level": "intermediate"
+      }
+    ]
+  },
+  {
+    "title": "Web & Modern Languages",
+    "skills": [
+      {
+        "tech": "JavaScript",
+        "icon": "javascript-plain",
+        "year": 2015,
+        "level": "advanced"
+      },
+      {
+        "tech": "TypeScript",
+        "icon": "typescript-plain",
+        "year": 2017,
+        "level": "beginner"
+      },
+      {
+        "tech": "Go",
+        "icon": "go-plain",
+        "year": 2017,
+        "level": "intermediate"
+      },
+      {
+        "tech": "Rust",
+        "icon": "rust-plain",
+        "year": 2020,
+        "level": "beginner"
+      },
+      {
+        "tech": "Python",
+        "icon": "python-plain",
+        "year": 2018,
+        "level": "beginner"
+      }
+    ]
+  },
+  {
+    "title": "Frameworks & Runtimes",
+    "skills": [
+      {
+        "tech": ".NET",
+        "icon": "dot-net-plain",
+        "year": 2008,
+        "level": "intermediate"
+      },
+      {
+        "tech": "Node.js",
+        "icon": "nodejs-plain",
+        "year": 2015,
+        "level": "advanced"
+      },
+      {
+        "tech": "Express.js",
+        "icon": "express-original",
+        "year": 2015,
+        "level": "advanced"
+      },
+      {
+        "tech": "React",
+        "icon": "react-original",
+        "year": 2015,
+        "level": "advanced"
+      },
+      {
+        "tech": "Redux",
+        "icon": "redux-original",
+        "year": 2015,
+        "level": "advanced"
+      }
+    ]
+  },
+  {
+    "title": "Data & Infrastructure",
+    "skills": [
+      {
+        "tech": "PostgreSQL",
+        "icon": "postgresql-plain",
+        "year": 2016,
+        "level": "intermediate"
+      },
+      {
+        "tech": "MongoDB",
+        "icon": "mongodb-plain",
+        "year": 2016,
+        "level": "intermediate"
+      },
+      {
+        "tech": "AWS",
+        "icon": "amazonwebservices-original",
+        "year": 2017,
+        "level": "intermediate"
+      },
+      {
+        "tech": "Docker",
+        "icon": "docker-plain",
+        "year": 2017,
+        "level": "intermediate"
+      }
+    ]
+  }
 ]
