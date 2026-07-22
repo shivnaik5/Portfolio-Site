@@ -10,7 +10,7 @@ const { tagline, description, roles } = Astro.props;
       roles.map((role) => (
         <span class="inline-flex items-center gap-2 rounded-full border border-surface bg-surface/60 px-5 py-2 text-sm font-medium text-foreground">
           <span class="h-2 w-2 rounded-full bg-accent-warm" />
-          {role.role}
+          {role}
         </span>
       ))
     }

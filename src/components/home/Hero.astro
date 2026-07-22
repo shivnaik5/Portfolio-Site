@@ -1,8 +1,9 @@
 ---
 import HeroText from './HeroText.astro';
-import { getHomeContent } from '@/lib/content';
+import { getHomeContent, getSiteSettings } from '@/lib/content';
 
-const { welcome, photoUrl } = getHomeContent();
+const { welcome } = await getHomeContent();
+const { photoUrl } = await getSiteSettings();
 ---
 
 {

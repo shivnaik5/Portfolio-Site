@@ -1,15 +1,29 @@
+import site from '@/data/site.json';
 import home from '@/data/home.json';
 import about from '@/data/about.json';
 import skills from '@/data/skills.json';
 import resume from '@/data/resume.json';
 import links from '@/data/links.json';
-import { client, isSanityConfigured } from './sanity';
+import { client, isSanityConfigured, urlFor } from './sanity';
 
-// Content still served from local JSON. These change rarely and aren't worth the
-// round trip to a CMS; see README for how to move them to Sanity later.
-export const getHomeContent = () => home;
-export const getAboutContent = () => about;
+// Navigation stays local: it tracks which routes exist in the codebase, so it should
+// change alongside the code rather than independently of it.
 export const getLinks = () => links;
+
+const SITE_QUERY = `*[_type == "siteSettings"][0]{
+  photo,
+  "resumeUrl": resumeFile.asset->url,
+  socialLinks[]{ label, url, icon }
+}`;
+
+const HOME_QUERY = `*[_type == "homePage"][0]{
+  welcomeHeadline, welcomeTitles, welcomeText,
+  experienceTagline, experienceDescription, roles
+}`;
+
+const ABOUT_QUERY = `*[_type == "aboutPage"][0]{
+  title, subTitle, aboutMe[]{ title, description }
+}`;
 
 // Skill groups are ordered columns, each holding an ordered list of skills.
 const SKILLS_QUERY = `*[_type == "skillGroup"] | order(order asc) {
@@ -24,6 +38,58 @@ const RESUME_QUERY = `{
     company, title, location, date, content
   }
 }`;
+
+/**
+ * Shared settings: { photoUrl, resumeUrl, socialLinks }
+ */
+export const getSiteSettings = async () => {
+  if (!isSanityConfigured()) return site;
+
+  const settings = await client.fetch(SITE_QUERY);
+  if (!settings) return site;
+
+  return {
+    // Sized for the largest slot either page renders it in, at 2x.
+    photoUrl: urlFor(settings.photo)?.width(448).height(448).fit('crop').url() ?? site.photoUrl,
+    resumeUrl: settings.resumeUrl ?? site.resumeUrl,
+    socialLinks: settings.socialLinks?.length ? settings.socialLinks : site.socialLinks,
+  };
+};
+
+/**
+ * Home content: { welcome, technicalExperience }
+ */
+export const getHomeContent = async () => {
+  if (!isSanityConfigured()) return home;
+
+  const page = await client.fetch(HOME_QUERY);
+  if (!page) return home;
+
+  return {
+    welcome: {
+      headline: page.welcomeHeadline,
+      titles: page.welcomeTitles ?? [],
+      text: page.welcomeText,
+    },
+    technicalExperience: {
+      tagline: page.experienceTagline,
+      description: page.experienceDescription,
+      roles: page.roles ?? [],
+    },
+  };
+};
+
+/**
+ * About content: { title, subTitle, aboutMe }
+ */
+export const getAboutContent = async () => {
+  if (!isSanityConfigured()) return about;
+
+  const page = await client.fetch(ABOUT_QUERY);
+  if (!page) return about;
+
+  return page;
+};
 
 // Both sources share a shape — [{ title, skills }] — so they flatten the same way.
 // Group titles are for organising the content, not for display.

@@ -49,6 +49,7 @@ src/
   layouts/     Shared page shell
   components/  UI components, grouped by page/section
   data/        Local JSON content, and the fallback for Sanity-backed content
+               (site.json, home.json, about.json, resume.json, skills.json, links.json)
   lib/         Content getters (content.js) and the Sanity client (sanity.js)
   styles/      Global CSS and Tailwind setup
 public/        Static assets served as-is (fonts, favicon)
@@ -60,7 +61,18 @@ Home, about and navigation content lives in `src/data/*.json`, so that copy can 
 
 ## Content
 
-Resume and skills content is managed in Sanity, since those change most often. Everything goes through the getters in [`src/lib/content.js`](src/lib/content.js), which components import — they never read a data source directly.
+Page content is managed in Sanity. Everything goes through the getters in [`src/lib/content.js`](src/lib/content.js), which components import — they never read a data source directly.
+
+| Document | Holds |
+| --- | --- |
+| Site Settings | Photo, resume PDF, social links — shared by the home page and footer |
+| Home Page | Welcome copy and the role pills |
+| About Page | Title, subtitle and the prose sections |
+| Resume Page | Timeline heading and description |
+| Experience | One document per role, ordered by hand |
+| Skill Groups | Rows of skills, each with a competency level |
+
+Navigation (`src/data/links.json`) stays local on purpose: it tracks which routes exist in the codebase, so it should change alongside the code rather than independently of it.
 
 **Sanity is not required to run the site.** With `SANITY_PROJECT_ID` unset, the content layer falls back to the JSON in `src/data/`, so a fresh clone builds and runs with no setup.
 
@@ -84,8 +96,10 @@ Content is fetched at **build time**, so publishing a change in Sanity requires 
 If a rebuild still shows the old content after a change was published, the build cache is stale — clear it and build again:
 
 ```bash
-rm -rf node_modules/.vite .astro dist && npm run build
+rm -rf node_modules/.astro node_modules/.vite .astro dist && npm run build
 ```
+
+`node_modules/.astro` is the one that matters and the easiest to miss — clearing only `.astro` and `dist` will still serve the previous build's content.
 
 On Vercel the equivalent is redeploying with the build cache disabled. This bites specifically when *only* the CMS changed and no source file did, so nothing local looks different enough to invalidate.
 

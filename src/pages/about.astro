@@ -4,10 +4,11 @@ import BasePage from '@/components/BasePage.astro';
 import SectionHeading from '@/components/shared/SectionHeading.astro';
 import AboutMe from '@/components/about/AboutMe.astro';
 import SkillDots from '@/components/about/SkillDots/SkillDots.astro';
-import { getAboutContent, getSkills } from '@/lib/content';
+import { getAboutContent, getSkills, getSiteSettings } from '@/lib/content';
 
-const about = getAboutContent();
+const about = await getAboutContent();
 const skills = await getSkills();
+const { photoUrl } = await getSiteSettings();
 ---
 
 <BaseLayout title="About — Shivang Naik">
@@ -15,18 +16,18 @@ const skills = await getSkills();
     <div class="animate-fadein">
       <div
         class:list={[
-          about.photoUrl && 'flex flex-col gap-8 md:flex-row md:items-center md:justify-between',
+          photoUrl && 'flex flex-col gap-8 md:flex-row md:items-center md:justify-between',
         ]}
       >
         <SectionHeading
           title={about.title}
           subtitle={about.subTitle}
-          class={about.photoUrl ? 'mb-0 flex-1' : ''}
+          class={photoUrl ? 'mb-0 flex-1' : ''}
         />
         {
-          about.photoUrl && (
+          photoUrl && (
             <div class="relative mx-auto h-48 w-48 flex-shrink-0 overflow-hidden rounded-full border-4 border-surface shadow-lg md:h-56 md:w-56">
-              <img src={about.photoUrl} alt="Shivang Naik" class="h-full w-full object-cover" />
+              <img src={photoUrl} alt="Shivang Naik" class="h-full w-full object-cover" />
             </div>
           )
         }

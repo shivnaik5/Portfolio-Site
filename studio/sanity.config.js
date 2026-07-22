@@ -4,9 +4,13 @@ import { visionTool } from '@sanity/vision';
 
 import { schemaTypes } from './schemas';
 
-// resumeSettings holds the resume page heading. There is only ever one, so it is
-// pinned as a single editable document instead of a list you can add to.
-const SINGLETONS = ['resumeSettings'];
+// Page-level documents that only ever have one instance. Each is pinned as a single
+// editable document instead of a list you can add to.
+const SINGLETONS = ['siteSettings', 'homePage', 'aboutPage', 'resumeSettings'];
+
+// A singleton opens straight into its one document rather than a list of one.
+const singleton = (S, type, title) =>
+  S.listItem().title(title).id(type).child(S.document().schemaType(type).documentId(type));
 
 export default defineConfig({
   name: 'portfolio',
@@ -21,10 +25,12 @@ export default defineConfig({
         S.list()
           .title('Content')
           .items([
-            S.listItem()
-              .title('Resume Page')
-              .id('resumeSettings')
-              .child(S.document().schemaType('resumeSettings').documentId('resumeSettings')),
+            singleton(S, 'siteSettings', 'Site Settings'),
+            S.divider(),
+            singleton(S, 'homePage', 'Home Page'),
+            singleton(S, 'aboutPage', 'About Page'),
+            singleton(S, 'resumeSettings', 'Resume Page'),
+            S.divider(),
             S.documentTypeListItem('experience').title('Experience'),
             S.documentTypeListItem('skillGroup').title('Skill Groups'),
           ]),

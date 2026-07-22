@@ -54,9 +54,48 @@ const skillKey = (tech, index) =>
     .replace(/#/g, 'sharp')
     .replace(/[^a-z0-9]/g, '')}-${index}`;
 
-const [resume, skills] = await Promise.all([readJson('resume.json'), readJson('skills.json')]);
+const [resume, skills, site, home, about] = await Promise.all([
+  readJson('resume.json'),
+  readJson('skills.json'),
+  readJson('site.json'),
+  readJson('home.json'),
+  readJson('about.json'),
+]);
 
 const documents = [
+  {
+    _id: 'siteSettings',
+    _type: 'siteSettings',
+    socialLinks: site.socialLinks.map((link, index) => ({
+      _type: 'socialLink',
+      _key: `${link.label.toLowerCase().replace(/[^a-z0-9]/g, '')}-${index}`,
+      label: link.label,
+      url: link.url,
+      icon: link.icon,
+    })),
+  },
+  {
+    _id: 'homePage',
+    _type: 'homePage',
+    welcomeHeadline: home.welcome.headline,
+    welcomeTitles: home.welcome.titles,
+    welcomeText: home.welcome.text,
+    experienceTagline: home.technicalExperience.tagline,
+    experienceDescription: home.technicalExperience.description,
+    roles: home.technicalExperience.roles,
+  },
+  {
+    _id: 'aboutPage',
+    _type: 'aboutPage',
+    title: about.title,
+    subTitle: about.subTitle,
+    aboutMe: about.aboutMe.map((section, index) => ({
+      _type: 'section',
+      _key: `section-${index}`,
+      title: section.title,
+      description: section.description,
+    })),
+  },
   {
     _id: 'resumeSettings',
     _type: 'resumeSettings',
@@ -90,10 +129,17 @@ const documents = [
   })),
 ];
 
+// siteSettings holds assets uploaded through the studio — the photo and the resume
+// PDF. createOrReplace would drop them, since a replace writes the whole document and
+// this script has no idea what was uploaded. So it is created once, then only the
+// fields owned by the JSON get patched on later runs.
+const MERGE_ONLY = new Set(['siteSettings']);
+
 console.log(`${dryRun ? '[dry run] Would import' : 'Importing'} ${documents.length} documents ` +
   `into ${projectId}/${dataset}:`);
 for (const doc of documents) {
-  console.log(`  ${doc._type.padEnd(16)} ${doc._id}`);
+  const mode = MERGE_ONLY.has(doc._id) ? 'merge ' : 'replace';
+  console.log(`  ${mode}  ${doc._type.padEnd(16)} ${doc._id}`);
 }
 
 if (dryRun) {
@@ -102,7 +148,14 @@ if (dryRun) {
 
 const client = createClient({ projectId, dataset, token, apiVersion: '2024-10-01', useCdn: false });
 
-const tx = documents.reduce((transaction, doc) => transaction.createOrReplace(doc), client.transaction());
+const tx = documents.reduce((transaction, doc) => {
+  if (!MERGE_ONLY.has(doc._id)) return transaction.createOrReplace(doc);
+
+  const { _id, _type, ...fields } = doc;
+  return transaction
+    .createIfNotExists({ _id, _type })
+    .patch(_id, (patch) => patch.set(fields));
+}, client.transaction());
 
 await tx.commit();
 console.log('\nDone.');

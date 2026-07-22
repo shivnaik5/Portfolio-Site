@@ -4,7 +4,7 @@ import Hero from '@/components/home/Hero.astro';
 import RoleGrid from '@/components/home/RoleGrid.astro';
 import { getHomeContent } from '@/lib/content';
 
-const { technicalExperience } = getHomeContent();
+const { technicalExperience } = await getHomeContent();
 ---
 
 <BaseLayout>
@@ -13,7 +13,7 @@ const { technicalExperience } = getHomeContent();
     <RoleGrid
       tagline={technicalExperience.tagline}
       description={technicalExperience.description}
-      roles={technicalExperience.experience}
+      roles={technicalExperience.roles}
     />
   </div>
 </BaseLayout>

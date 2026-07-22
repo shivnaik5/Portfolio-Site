@@ -1,0 +1,16 @@
+{
+  "photoUrl": null,
+  "resumeUrl": "https://shivang-naik.s3.us-east-2.amazonaws.com/resume/Shivang+Naik+Resume.pdf",
+  "socialLinks": [
+    {
+      "label": "GitHub",
+      "url": "https://www.github.com/shivnaik5",
+      "icon": "github-original"
+    },
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/shivang-naik",
+      "icon": "linkedin-plain"
+    }
+  ]
+}

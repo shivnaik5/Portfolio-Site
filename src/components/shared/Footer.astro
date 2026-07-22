@@ -1,5 +1,8 @@
 ---
+import { getSiteSettings } from '@/lib/content';
+
 const year = new Date().getFullYear();
+const { socialLinks } = await getSiteSettings();
 ---
 
 <footer class="border-t border-surface bg-surface px-4 py-8 text-sm text-muted">
@@ -10,22 +13,19 @@ const year = new Date().getFullYear();
     </nav>
 
     <div class="flex gap-4">
-      <a
-        href="https://www.github.com/shivnaik5"
-        target="_blank"
-        rel="noreferrer"
-        class="transition-colors hover:text-accent"
-      >
-        <i class="devicon-github-original text-lg" />
-      </a>
-      <a
-        href="https://www.linkedin.com/in/shivang-naik"
-        target="_blank"
-        rel="noreferrer"
-        class="transition-colors hover:text-accent"
-      >
-        <i class="devicon-linkedin-plain text-lg" />
-      </a>
+      {
+        socialLinks.map((link) => (
+          <a
+            href={link.url}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={link.label}
+            class="transition-colors hover:text-accent"
+          >
+            <i class={`devicon-${link.icon} text-lg`} aria-hidden="true" />
+          </a>
+        ))
+      }
     </div>
 
     <p class="text-xs">

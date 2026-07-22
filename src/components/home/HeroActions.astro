@@ -1,31 +1,34 @@
 ---
-const RESUME_URL = 'https://shivang-naik.s3.us-east-2.amazonaws.com/resume/Shivang+Naik+Resume.pdf';
+import { getSiteSettings } from '@/lib/content';
+
 const { justify = 'justify-start' } = Astro.props;
+const { resumeUrl, socialLinks } = await getSiteSettings();
 ---
 
 <div class:list={['mt-8 flex flex-wrap items-center gap-4', justify]}>
-  <a
-    href={RESUME_URL}
-    target="_blank"
-    rel="noreferrer"
-    class="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-background transition-opacity hover:opacity-90"
-  >
-    Download Resume
-  </a>
-  <a
-    href="https://www.github.com/shivnaik5"
-    target="_blank"
-    rel="noreferrer"
-    class="flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-accent"
-  >
-    <i class="devicon-github-original text-xl" /> GitHub
-  </a>
-  <a
-    href="https://www.linkedin.com/in/shivang-naik"
-    target="_blank"
-    rel="noreferrer"
-    class="flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-accent"
-  >
-    <i class="devicon-linkedin-plain text-xl" /> LinkedIn
-  </a>
+  {
+    resumeUrl && (
+      <a
+        href={resumeUrl}
+        target="_blank"
+        rel="noreferrer"
+        class="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-background transition-opacity hover:opacity-90"
+      >
+        Download Resume
+      </a>
+    )
+  }
+  {
+    socialLinks.map((link) => (
+      <a
+        href={link.url}
+        target="_blank"
+        rel="noreferrer"
+        class="flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-accent"
+      >
+        {link.icon && <i class={`devicon-${link.icon} text-xl`} aria-hidden="true" />}
+        {link.label}
+      </a>
+    ))
+  }
 </div>
