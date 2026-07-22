@@ -1,55 +1,49 @@
-import React, { useEffect } from 'react';
-import { Row, Col } from 'reactstrap';
 import BaseLayout from '@/components/layouts/BaseLayout';
 import BasePage from '@/components/BasePage';
+import SectionHeading from '@/components/shared/SectionHeading';
 import AboutMe from '@/components/about/AboutMe';
-import SkillCards from '@/components/about/SkillCard/SkillCards';
-
-import about from '@/public/content/about.json';
-import skills from '@/public/content/skills.json';
+import SkillDots from '@/components/about/SkillDots/SkillDots';
+import { getAboutContent, getSkills } from '@/lib/content';
 
 const About = () => {
-  useEffect(() => {
-    return () => window.__isAboutPageLoaded = true;
-  }, []);
+  const about = getAboutContent();
+  const skills = getSkills();
 
-  const handleFadeClassName = () => (
-    (typeof window !== 'undefined' && window.__isAboutPageLoaded)
-      ? ''
-      : 'fadein'
-  );
-
-  return  (
+  return (
     <BaseLayout>
-      <BasePage className='about-page'>
-        <Row className='mt-5'>
-          <Col md='12' className={`about-image ${handleFadeClassName()}`}>
-            <img className='image bg' src='/images/about/about-page-bg2.png'/>
-          </Col>
-        </Row>
-        <Row className='mt-5'>
-          <Col md='12'>
-            <div className='headline'>
-              <h1 className={`title ${handleFadeClassName()}`}>{about.title}</h1>
-              <p className={`subtitle ${handleFadeClassName()}`}>{about.subTitle}</p>
-            </div>
-          </Col>
-          <Col md='12' className='about-details'>
-            <div className={`details`}>
-              {about.aboutMe.map((element, index) => (
-                <AboutMe
-                  key={`aboutme - ${index}`}
-                  {...element}
-                  fadeClassName={handleFadeClassName}
+      <BasePage>
+        <div className="animate-fadein">
+          <div
+            className={
+              about.photoUrl
+                ? 'flex flex-col gap-8 md:flex-row md:items-center md:justify-between'
+                : ''
+            }
+          >
+            <SectionHeading
+              title={about.title}
+              subtitle={about.subTitle}
+              className={about.photoUrl ? 'mb-0 flex-1' : ''}
+            />
+            {about.photoUrl && (
+              <div className="relative mx-auto h-48 w-48 flex-shrink-0 overflow-hidden rounded-full border-4 border-surface shadow-lg md:h-56 md:w-56">
+                <img
+                  src={about.photoUrl}
+                  alt="Shivang Naik"
+                  className="h-full w-full object-cover"
                 />
-              ))}
-            </div>
-          </Col>
-        </Row>
-        <SkillCards
-          skills={skills}
-          fadeClassName={handleFadeClassName}
-        />
+              </div>
+            )}
+          </div>
+
+          <div>
+            {about.aboutMe.map((element, index) => (
+              <AboutMe key={index} {...element} />
+            ))}
+          </div>
+
+          <SkillDots skills={skills} />
+        </div>
       </BasePage>
     </BaseLayout>
   );

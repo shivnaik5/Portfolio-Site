@@ -1,18 +1,20 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import links from '@/public/content/links.json';
+import { getLinks } from '@/lib/content';
+
+const links = getLinks();
 
 const NavLink = ({ page, route, isActive, onNavigate }) => (
   <li>
     <Link href={route}>
       <a
         onClick={onNavigate}
-        className={`block py-2 font-mono text-sm transition-colors hover:text-accent ${
-          isActive ? 'text-accent' : 'text-foreground'
+        className={`inline-block rounded-full px-4 py-2 font-sans text-sm font-medium transition-colors ${
+          isActive ? 'bg-accent/10 text-accent' : 'text-foreground/80 hover:text-accent'
         }`}
       >
-        <span className="text-muted">$</span> {page.toLowerCase()}
+        {page}
       </a>
     </Link>
   </li>
@@ -49,18 +51,17 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 z-50 w-full transition-colors duration-300 ${
-        scrolled ? 'bg-surface/80 shadow-lg backdrop-blur-md' : 'bg-transparent'
+        scrolled ? 'bg-background/90 shadow-sm backdrop-blur-md' : 'bg-transparent'
       }`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 md:px-6">
         <Link href="/">
-          <a className="flex items-center font-mono text-lg font-bold text-foreground">
-            <span className="text-accent">&gt;</span>&nbsp;shivang.dev
-            <span className="ml-1 inline-block h-5 w-2 animate-blink bg-accent" />
+          <a className="font-display text-xl font-semibold text-foreground">
+            shivang<span className="text-accent-warm">.</span>
           </a>
         </Link>
 
-        <ul className="hidden items-center gap-8 md:flex">
+        <ul className="hidden items-center gap-2 md:flex">
           {navLinks.map((link) => (
             <NavLink
               key={link.page}
@@ -97,7 +98,7 @@ const Header = () => {
       </div>
 
       {isOpen && (
-        <ul className="flex flex-col gap-1 border-t border-border bg-surface px-4 py-4 md:hidden">
+        <ul className="flex flex-col gap-1 border-t border-surface bg-surface px-4 py-4 md:hidden">
           {navLinks.map((link) => (
             <NavLink
               key={link.page}

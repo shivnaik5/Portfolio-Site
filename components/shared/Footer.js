@@ -2,14 +2,14 @@ import React from 'react';
 import Link from 'next/link';
 
 const Footer = () => (
-  <footer className="border-t border-border bg-surface px-4 py-8 font-mono text-sm text-muted">
+  <footer className="border-t border-surface bg-surface px-4 py-8 text-sm text-muted">
     <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 md:flex-row md:justify-between">
       <nav className="flex gap-6">
         <Link href="/about">
-          <a className="transition-colors hover:text-accent">about</a>
+          <a className="transition-colors hover:text-accent">About</a>
         </Link>
         <Link href="/resume">
-          <a className="transition-colors hover:text-accent">resume</a>
+          <a className="transition-colors hover:text-accent">Resume</a>
         </Link>
       </nav>
 
@@ -27,8 +27,7 @@ const Footer = () => (
       </div>
 
       <p className="text-xs">
-        {'// built with Next.js + Tailwind, '}
-        &copy; {new Date().getFullYear()} Shivang Naik
+        &copy; {new Date().getFullYear()} Shivang Naik. Built with Next.js &amp; Tailwind CSS.
       </p>
     </div>
   </footer>
