@@ -9,7 +9,12 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "sanity:migrate": "node scripts/migrate-to-sanity.mjs"
+    "sanity:migrate": "node scripts/migrate-to-sanity.mjs",
+    "release:status": "node scripts/release/status.mjs",
+    "release:start": "node scripts/release/start.mjs",
+    "release:publish": "node scripts/release/publish.mjs",
+    "release:promote": "node scripts/release/promote.mjs",
+    "release:finish": "node scripts/release/finish.mjs"
   },
   "dependencies": {
     "@sanity/client": "^7.24.0",

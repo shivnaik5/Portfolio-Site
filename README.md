@@ -59,6 +59,14 @@ scripts/       One-off maintenance scripts
 
 Home, about and navigation content lives in `src/data/*.json`, so that copy can be updated without touching components. Resume and skills content comes from Sanity — see below.
 
+## Development workflow
+
+Development happens in this private repo; finished releases are pushed to the public
+[`Portfolio-Site`](https://github.com/shivnaik5/Portfolio-Site) repo, which is what Vercel
+deploys. Nothing pushed here deploys anywhere.
+
+See [WORKFLOW.md](WORKFLOW.md) for the release process and the reasoning behind it.
+
 ## Content
 
 Page content is managed in Sanity. Everything goes through the getters in [`src/lib/content.js`](src/lib/content.js), which components import — they never read a data source directly.
