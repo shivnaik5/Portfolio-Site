@@ -1,5 +1,10 @@
 ---
 import { getCompetencyLevel } from './competencyLevel';
+import type { Skill } from '@/lib/types';
+
+interface Props {
+  skill: Skill;
+}
 
 const { skill } = Astro.props;
 const { tech, icon, level } = skill;

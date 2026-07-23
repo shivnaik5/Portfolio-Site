@@ -3,6 +3,10 @@ import Header from '@/components/shared/Header.astro';
 import Footer from '@/components/shared/Footer.astro';
 import '@/styles/global.css';
 
+interface Props {
+  title?: string;
+}
+
 const { title = 'Shivang Naik — Software Engineer' } = Astro.props;
 ---
 

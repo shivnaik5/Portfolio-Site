@@ -7,7 +7,7 @@
 import {
   PRIVATE_DEV, branchExists, confirm, currentBranch, detail, fail, git, gitLive, info, isDryRun,
   ok, parseVersion, requireCleanTree, step,
-} from './lib.mjs';
+} from './lib.ts';
 
 const version = process.argv[2]
   ? parseVersion(process.argv[2])

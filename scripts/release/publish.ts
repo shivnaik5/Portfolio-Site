@@ -7,7 +7,7 @@
 import {
   PUBLIC_DEV, PUBLIC_URL, assertNoPublicRemote, confirm, currentBranch, detail, fail, git,
   gitLive, info, isDryRun, ok, remoteTip, requireCleanTree, step, versionFromBranch,
-} from './lib.mjs';
+} from './lib.ts';
 
 const branch = currentBranch();
 const version = versionFromBranch(branch);

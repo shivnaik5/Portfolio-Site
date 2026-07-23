@@ -1,14 +1,27 @@
-import site from '@/data/site.json';
-import home from '@/data/home.json';
-import about from '@/data/about.json';
-import skills from '@/data/skills.json';
-import resume from '@/data/resume.json';
-import links from '@/data/links.json';
+import siteJson from '@/data/site.json';
+import homeJson from '@/data/home.json';
+import aboutJson from '@/data/about.json';
+import skillsJson from '@/data/skills.json';
+import resumeJson from '@/data/resume.json';
+import linksJson from '@/data/links.json';
 import { client, isSanityConfigured, urlFor } from './sanity';
+import type { SanityImageSource } from '@sanity/image-url';
+import type {
+  AboutContent, HomeContent, NavLink, ResumeContent, SiteSettings, SkillColumns, SkillGroup,
+} from './types';
+
+// JSON imports widen string literals (level: string rather than the union), so the
+// fallback data is asserted to the shared shapes it is already written to match.
+const site = siteJson as SiteSettings;
+const home = homeJson as HomeContent;
+const about = aboutJson as AboutContent;
+const skills = skillsJson as SkillGroup[];
+const resume = resumeJson as ResumeContent;
+const links = linksJson as NavLink[];
 
 // Navigation stays local: it tracks which routes exist in the codebase, so it should
 // change alongside the code rather than independently of it.
-export const getLinks = () => links;
+export const getLinks = (): NavLink[] => links;
 
 const SITE_QUERY = `*[_type == "siteSettings"][0]{
   photo,
@@ -39,13 +52,15 @@ const RESUME_QUERY = `{
   }
 }`;
 
-/**
- * Shared settings: { photoUrl, resumeUrl, socialLinks }
- */
-export const getSiteSettings = async () => {
+/** Shared settings: photo, resume download and social links. */
+export const getSiteSettings = async (): Promise<SiteSettings> => {
   if (!isSanityConfigured()) return site;
 
-  const settings = await client.fetch(SITE_QUERY);
+  const settings = await client!.fetch<{
+    photo?: SanityImageSource | null;
+    resumeUrl?: string;
+    socialLinks?: SiteSettings['socialLinks'];
+  } | null>(SITE_QUERY);
   if (!settings) return site;
 
   return {
@@ -56,13 +71,17 @@ export const getSiteSettings = async () => {
   };
 };
 
-/**
- * Home content: { welcome, technicalExperience }
- */
-export const getHomeContent = async () => {
+export const getHomeContent = async (): Promise<HomeContent> => {
   if (!isSanityConfigured()) return home;
 
-  const page = await client.fetch(HOME_QUERY);
+  const page = await client!.fetch<{
+    welcomeHeadline: string;
+    welcomeTitles?: string[];
+    welcomeText: string;
+    experienceTagline: string;
+    experienceDescription: string;
+    roles?: string[];
+  } | null>(HOME_QUERY);
   if (!page) return home;
 
   return {
@@ -79,47 +98,35 @@ export const getHomeContent = async () => {
   };
 };
 
-/**
- * About content: { title, subTitle, aboutMe }
- */
-export const getAboutContent = async () => {
+export const getAboutContent = async (): Promise<AboutContent> => {
   if (!isSanityConfigured()) return about;
 
-  const page = await client.fetch(ABOUT_QUERY);
-  if (!page) return about;
-
-  return page;
+  const page = await client!.fetch<AboutContent | null>(ABOUT_QUERY);
+  return page ?? about;
 };
 
 // Both sources share a shape — [{ title, skills }] — so they flatten the same way.
 // Group titles are for organising the content, not for display.
-const toSkillColumns = (groups) =>
+const toSkillColumns = (groups: Pick<SkillGroup, 'skills'>[]): SkillColumns =>
   groups.map((group) => group.skills ?? []).filter((group) => group.length > 0);
 
-/**
- * Skills, grouped into columns: [[{ tech, icon, year, level }, ...], ...]
- */
-export const getSkills = async () => {
+export const getSkills = async (): Promise<SkillColumns> => {
   if (!isSanityConfigured()) return toSkillColumns(skills);
 
-  const groups = await client.fetch(SKILLS_QUERY);
+  const groups = await client!.fetch<Pick<SkillGroup, 'skills'>[]>(SKILLS_QUERY);
   if (!groups?.length) return toSkillColumns(skills);
 
   return toSkillColumns(groups);
 };
 
-/**
- * Resume content: { headline, description, details: [...] }
- */
-export const getResumeContent = async () => {
+export const getResumeContent = async (): Promise<ResumeContent> => {
   if (!isSanityConfigured()) return resume;
 
-  const { settings, details } = await client.fetch(RESUME_QUERY);
+  const { settings, details } = await client!.fetch<{
+    settings: Pick<ResumeContent, 'headline' | 'description'> | null;
+    details: ResumeContent['details'];
+  }>(RESUME_QUERY);
   if (!settings || !details?.length) return resume;
 
-  return {
-    headline: settings.headline,
-    description: settings.description,
-    details,
-  };
+  return { headline: settings.headline, description: settings.description, details };
 };

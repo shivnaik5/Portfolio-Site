@@ -44,30 +44,34 @@ const currentPath = Astro.url.pathname;
 </header>
 
 <script>
-  const header = document.querySelector('[data-site-header]');
-  const toggle = document.querySelector('[data-menu-toggle]');
-  const mobileNav = document.querySelector('[data-mobile-nav]');
+  const header = document.querySelector<HTMLElement>('[data-site-header]');
+  const toggle = document.querySelector<HTMLElement>('[data-menu-toggle]');
+  const mobileNav = document.querySelector<HTMLElement>('[data-mobile-nav]');
 
-  let isOpen = false;
+  // All three are rendered by this component, so they are only absent if the markup
+  // changes. Guarding once keeps the handlers below free of null checks.
+  if (header && toggle && mobileNav) {
+    let isOpen = false;
 
-  const updateScrolled = () => {
-    const scrolled = window.scrollY > 50 || isOpen;
-    header.setAttribute('data-scrolled', String(scrolled));
-  };
+    const updateScrolled = () => {
+      const scrolled = window.scrollY > 50 || isOpen;
+      header.setAttribute('data-scrolled', String(scrolled));
+    };
 
-  const setOpen = (open) => {
-    isOpen = open;
-    toggle.setAttribute('data-open', String(open));
-    toggle.setAttribute('aria-expanded', String(open));
-    mobileNav.hidden = !open;
+    const setOpen = (open: boolean) => {
+      isOpen = open;
+      toggle.setAttribute('data-open', String(open));
+      toggle.setAttribute('aria-expanded', String(open));
+      mobileNav.hidden = !open;
+      updateScrolled();
+    };
+
+    toggle.addEventListener('click', () => setOpen(!isOpen));
+    mobileNav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => setOpen(false));
+    });
+
+    document.addEventListener('scroll', updateScrolled);
     updateScrolled();
-  };
-
-  toggle.addEventListener('click', () => setOpen(!isOpen));
-  mobileNav.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => setOpen(false));
-  });
-
-  document.addEventListener('scroll', updateScrolled);
-  updateScrolled();
+  }
 </script>

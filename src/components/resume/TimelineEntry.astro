@@ -1,4 +1,10 @@
 ---
+import type { ExperienceEntry } from '@/lib/types';
+
+interface Props {
+  entry: ExperienceEntry;
+}
+
 const { entry } = Astro.props;
 const { company, title, location, date, content } = entry;
 ---

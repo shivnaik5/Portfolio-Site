@@ -11,11 +11,11 @@ import { resolve } from 'node:path';
 import {
   PUBLIC_CLONE, PUBLIC_DEV, PUBLIC_PROD, PRIVATE_DEV, REPO_ROOT, currentBranch, detail, git,
   info, ok, step, warn,
-} from './lib.mjs';
+} from './lib.ts';
 
-const short = (sha) => (sha ? sha.slice(0, 8) : '—');
-const problems = [];
-const flag = (msg) => {
+const short = (sha: string | null | undefined) => (sha ? sha.slice(0, 8) : '—');
+const problems: string[] = [];
+const flag = (msg: string) => {
   problems.push(msg);
   warn(msg);
 };

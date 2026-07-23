@@ -1,5 +1,5 @@
 import { defineConfig } from 'sanity';
-import { structureTool } from 'sanity/structure';
+import { structureTool, type StructureBuilder } from 'sanity/structure';
 import { visionTool } from '@sanity/vision';
 
 import { schemaTypes } from './schemas';
@@ -8,15 +8,23 @@ import { schemaTypes } from './schemas';
 // editable document instead of a list you can add to.
 const SINGLETONS = ['siteSettings', 'homePage', 'aboutPage', 'resumeSettings'];
 
+// Document actions that make no sense on a singleton.
+const SINGLETON_HIDDEN_ACTIONS = ['unpublish', 'delete', 'duplicate'];
+
+const projectId = process.env.SANITY_STUDIO_PROJECT_ID;
+if (!projectId) {
+  throw new Error('SANITY_STUDIO_PROJECT_ID is not set — copy studio/.env.example to studio/.env');
+}
+
 // A singleton opens straight into its one document rather than a list of one.
-const singleton = (S, type, title) =>
+const singleton = (S: StructureBuilder, type: string, title: string) =>
   S.listItem().title(title).id(type).child(S.document().schemaType(type).documentId(type));
 
 export default defineConfig({
   name: 'portfolio',
   title: 'Portfolio Content',
 
-  projectId: process.env.SANITY_STUDIO_PROJECT_ID,
+  projectId,
   dataset: process.env.SANITY_STUDIO_DATASET ?? 'production',
 
   plugins: [
@@ -47,7 +55,7 @@ export default defineConfig({
   document: {
     actions: (actions, { schemaType }) =>
       SINGLETONS.includes(schemaType)
-        ? actions.filter(({ action }) => !['unpublish', 'delete', 'duplicate'].includes(action))
+        ? actions.filter(({ action }) => !action || !SINGLETON_HIDDEN_ACTIONS.includes(action))
         : actions,
   },
 });

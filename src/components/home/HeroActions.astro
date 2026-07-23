@@ -1,6 +1,10 @@
 ---
 import { getSiteSettings } from '@/lib/content';
 
+interface Props {
+  justify?: string;
+}
+
 const { justify = 'justify-start' } = Astro.props;
 const { resumeUrl, socialLinks } = await getSiteSettings();
 ---

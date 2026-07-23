@@ -10,7 +10,7 @@ import { resolve } from 'node:path';
 import {
   PRIVATE_DEV, REPO_ROOT, branchExists, confirm, currentBranch, detail, fail, git, gitLive,
   info, isDryRun, ok, parseVersion, requireCleanTree, step,
-} from './lib.mjs';
+} from './lib.ts';
 
 const version = parseVersion(process.argv[2]);
 const branch = `release/${version}`;

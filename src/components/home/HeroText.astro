@@ -1,5 +1,12 @@
 ---
 import HeroActions from './HeroActions.astro';
+import type { HomeContent } from '@/lib/types';
+
+interface Props {
+  welcome: HomeContent['welcome'];
+  align?: string;
+  justify?: string;
+}
 
 const { welcome, align = 'text-left', justify = 'justify-start' } = Astro.props;
 ---

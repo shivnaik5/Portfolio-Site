@@ -1,5 +1,10 @@
 ---
 import TimelineEntry from './TimelineEntry.astro';
+import type { ExperienceEntry } from '@/lib/types';
+
+interface Props {
+  entries: ExperienceEntry[];
+}
 
 const { entries } = Astro.props;
 ---

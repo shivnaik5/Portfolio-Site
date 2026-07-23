@@ -1,5 +1,10 @@
 ---
 import SkillChip from './SkillChip.astro';
+import type { SkillColumns } from '@/lib/types';
+
+interface Props {
+  skills: SkillColumns;
+}
 
 const { skills } = Astro.props;
 ---

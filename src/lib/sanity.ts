@@ -1,5 +1,9 @@
-import { createClient } from '@sanity/client';
-import { createImageUrlBuilder } from '@sanity/image-url';
+import { createClient, type SanityClient } from '@sanity/client';
+import {
+  createImageUrlBuilder,
+  type ImageUrlBuilder,
+  type SanityImageSource,
+} from '@sanity/image-url';
 
 const projectId = import.meta.env.SANITY_PROJECT_ID;
 const dataset = import.meta.env.SANITY_DATASET ?? 'production';
@@ -10,7 +14,7 @@ const token = import.meta.env.SANITY_READ_TOKEN;
 // cost correctness: it lags a write by a few seconds, which is exactly the window a
 // deploy webhook fires in, so a build triggered by publishing can bake in the content
 // as it was *before* the publish. Visitors are served by Vercel's CDN either way.
-export const client = projectId
+export const client: SanityClient | null = projectId
   ? createClient({
       projectId,
       dataset,
@@ -22,7 +26,7 @@ export const client = projectId
 
 // When SANITY_PROJECT_ID is unset the content layer falls back to local JSON, so
 // the site still builds on a fresh clone with no credentials configured.
-export const isSanityConfigured = () => client !== null;
+export const isSanityConfigured = (): boolean => client !== null;
 
 const builder = client ? createImageUrlBuilder(client) : null;
 
@@ -30,6 +34,7 @@ const builder = client ? createImageUrlBuilder(client) : null;
  * Build a URL for a Sanity image asset, served from Sanity's image CDN.
  * Returns null for empty values so callers can keep using falsy checks.
  *
- * urlFor(image).width(448).height(448).url()
+ * urlFor(image)?.width(448).height(448).url()
  */
-export const urlFor = (source) => (builder && source ? builder.image(source) : null);
+export const urlFor = (source: SanityImageSource | undefined | null): ImageUrlBuilder | null =>
+  builder && source ? builder.image(source) : null;

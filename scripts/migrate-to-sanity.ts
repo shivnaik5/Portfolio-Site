@@ -1,7 +1,7 @@
 /**
  * One-off import of the local JSON content into Sanity.
  *
- *   SANITY_PROJECT_ID=... SANITY_WRITE_TOKEN=... node scripts/migrate-to-sanity.mjs
+ *   SANITY_PROJECT_ID=... SANITY_WRITE_TOKEN=... node scripts/migrate-to-sanity.ts
  *
  * Documents are written with deterministic IDs via createOrReplace, so running it
  * twice is safe — but note that it overwrites, so any edits made in the studio to
@@ -12,6 +12,10 @@ import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 
 import { createClient } from '@sanity/client';
+
+import type {
+  AboutContent, HomeContent, ResumeContent, SiteSettings, SkillGroup,
+} from '../src/lib/types.ts';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const dataDir = resolve(here, '../src/data');
@@ -42,12 +46,13 @@ if (!token && !dryRun) {
   process.exit(1);
 }
 
-const readJson = async (name) => JSON.parse(await readFile(resolve(dataDir, name), 'utf8'));
+const readJson = async <T>(name: string): Promise<T> =>
+  JSON.parse(await readFile(resolve(dataDir, name), 'utf8')) as T;
 
 // Array items need a _key that is unique within the array. Stripping non-alphanumerics
 // alone is not enough — C, C++ and C# all collapse to "c" — so symbols are spelled out
 // and the position is appended as a guarantee.
-const skillKey = (tech, index) =>
+const skillKey = (tech: string, index: number) =>
   `${tech
     .toLowerCase()
     .replace(/\+/g, 'plus')
@@ -55,14 +60,16 @@ const skillKey = (tech, index) =>
     .replace(/[^a-z0-9]/g, '')}-${index}`;
 
 const [resume, skills, site, home, about] = await Promise.all([
-  readJson('resume.json'),
-  readJson('skills.json'),
-  readJson('site.json'),
-  readJson('home.json'),
-  readJson('about.json'),
+  readJson<ResumeContent>('resume.json'),
+  readJson<SkillGroup[]>('skills.json'),
+  readJson<SiteSettings>('site.json'),
+  readJson<HomeContent>('home.json'),
+  readJson<AboutContent>('about.json'),
 ]);
 
-const documents = [
+type SanityDoc = { _id: string; _type: string } & Record<string, unknown>;
+
+const documents: SanityDoc[] = [
   {
     _id: 'siteSettings',
     _type: 'siteSettings',
@@ -154,7 +161,7 @@ const tx = documents.reduce((transaction, doc) => {
   const { _id, _type, ...fields } = doc;
   return transaction
     .createIfNotExists({ _id, _type })
-    .patch(_id, (patch) => patch.set(fields));
+    .patch(_id, (patch: ReturnType<typeof client.patch>) => patch.set(fields));
 }, client.transaction());
 
 await tx.commit();
