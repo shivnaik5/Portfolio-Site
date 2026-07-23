@@ -1,0 +1,30 @@
+[
+  {
+    "title": "Skills Constellation",
+    "route": "/portfolio/constellation",
+    "blurb": "Every technology I work with, arranged as an orbiting cluster you can spin, filter and pick apart.",
+    "tags": ["Three.js", "Interaction"],
+    "status": "live"
+  },
+  {
+    "title": "The Road So Far",
+    "route": "/portfolio/road",
+    "blurb": "My career as a road you travel, one waypoint per role, built from the same data as the resume page.",
+    "tags": ["Three.js", "Procedural"],
+    "status": "planned"
+  },
+  {
+    "title": "Geometry Playground",
+    "route": "/portfolio/geometry",
+    "blurb": "Subdivide, smooth and deform a mesh in real time. A toy for poking at how surfaces are actually made.",
+    "tags": ["Three.js", "Geometry"],
+    "status": "planned"
+  },
+  {
+    "title": "Coffee Break",
+    "route": "/portfolio/game",
+    "blurb": "A small physics toy you can pick up in five seconds and put down in thirty.",
+    "tags": ["Three.js", "Game"],
+    "status": "planned"
+  }
+]

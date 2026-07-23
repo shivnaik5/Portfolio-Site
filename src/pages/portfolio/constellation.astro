@@ -1,0 +1,74 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import BasePage from '@/components/BasePage.astro';
+import SectionHeading from '@/components/shared/SectionHeading.astro';
+import SceneCanvas from '@/components/three/SceneCanvas.astro';
+import { getSkills } from '@/lib/content';
+import skillsJson from '@/data/skills.json';
+import type { SkillGroup } from '@/lib/types';
+
+// The scene wants the group titles, which getSkills() deliberately flattens away.
+// Titles are organisational and rarely change, so they come from the local file
+// while the skills themselves come through the normal content layer.
+const columns = await getSkills();
+const titles = (skillsJson as SkillGroup[]).map((group) => group.title);
+
+const groups = columns.map((skills, index) => ({
+  title: titles[index] ?? `Group ${index + 1}`,
+  skills,
+}));
+
+const total = columns.reduce((count, column) => count + column.length, 0);
+---
+
+<BaseLayout title="Skills Constellation — Shivang Naik">
+  <BasePage>
+    <div class="animate-fadein">
+      <SectionHeading
+        title="Skills Constellation"
+        subtitle={`All ${total} technologies from my about page, arranged in space. Node size follows how well I know it.`}
+      />
+
+      <SceneCanvas id="constellation" label={`A rotating 3D cluster of ${total} technology nodes`}>
+        <p slot="fallback" class="text-muted">
+          This scene needs WebGL. The same information lives on the
+          <a href="/about" class="text-accent underline">about page</a> as a plain list.
+        </p>
+        <span slot="hint">Drag to rotate · hover a node</span>
+      </SceneCanvas>
+
+      <div class="mt-4 flex flex-wrap items-center justify-between gap-4">
+        <div id="constellation-label" class="text-sm"></div>
+        <div id="constellation-legend" class="flex flex-wrap gap-x-4 gap-y-2"></div>
+      </div>
+
+      <p class="mt-8 text-sm text-muted">
+        Built with Three.js. Nodes are placed with a Fibonacci sphere so they spread evenly
+        instead of bunching at the poles, and each one links to its two nearest neighbours in
+        the same group. Colours, like everything else here, come from the site's own palette.
+      </p>
+    </div>
+  </BasePage>
+</BaseLayout>
+
+<script>
+  import { mountConstellation, type ConstellationGroup } from '@/scenes/constellation';
+
+  const canvas = document.getElementById('constellation') as HTMLCanvasElement | null;
+  const wrapper = canvas?.closest('div');
+  const fallback = wrapper?.querySelector<HTMLElement>('[data-scene-fallback]');
+  const hint = wrapper?.querySelector<HTMLElement>('[data-scene-hint]');
+  const label = document.getElementById('constellation-label');
+  const legend = document.getElementById('constellation-legend');
+
+  const groups: ConstellationGroup[] = JSON.parse(
+    document.getElementById('constellation-data')?.textContent ?? '[]',
+  );
+
+  if (canvas && fallback && hint && label && legend && groups.length) {
+    mountConstellation(canvas, groups, { fallback, hint, label, legend });
+  }
+</script>
+
+<script id="constellation-data" type="application/json" set:html={JSON.stringify(groups)} is:inline
+></script>

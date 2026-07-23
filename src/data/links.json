@@ -17,7 +17,7 @@
   {
     "page": "Projects",
     "route": "/portfolio",
-    "active": false
+    "active": true
   },
   {
     "page": "Blog",

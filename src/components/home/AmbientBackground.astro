@@ -1,0 +1,40 @@
+---
+import type { AmbientMode } from '@/scenes/ambientBackground';
+
+interface Props {
+  /**
+   * Default behaviour. 'off' (the default) renders nothing and leaves the static CSS
+   * gradient in the hero. Any visit can still turn it on with ?bg=cursor|drift|spotlight.
+   */
+  mode?: AmbientMode | 'off';
+}
+
+const { mode = 'off' } = Astro.props;
+---
+
+<canvas
+  id="ambient-bg"
+  data-mode={mode}
+  aria-hidden="true"
+  class="pointer-events-none fixed inset-0 -z-10 h-full w-full"></canvas>
+
+<script>
+  import { mountAmbientBackground, isAmbientMode } from '@/scenes/ambientBackground';
+
+  const canvas = document.getElementById('ambient-bg');
+  if (canvas instanceof HTMLCanvasElement) {
+    // Resolve the mode: a ?bg= query param wins (so all modes can be previewed live
+    // without editing code), otherwise the component's default. Anything that isn't a
+    // real mode — including the 'off' default — simply doesn't mount, leaving the static
+    // CSS gradient in the hero.
+    const fromQuery = new URLSearchParams(location.search).get('bg');
+    const mode = fromQuery ?? canvas.dataset.mode ?? 'off';
+
+    if (isAmbientMode(mode)) {
+      const dispose = mountAmbientBackground(canvas, { mode });
+      // Astro's client-side navigation swaps the DOM without a full reload; tear down
+      // the GL context so it doesn't leak when leaving the page.
+      document.addEventListener('astro:before-swap', dispose, { once: true });
+    }
+  }
+</script>

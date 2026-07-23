@@ -1,0 +1,43 @@
+---
+interface Props {
+  /** Used by the page script to find this canvas. */
+  id: string;
+  /** Describes the scene for screen readers, which cannot see the canvas. */
+  label: string;
+  /** Tailwind height classes — scenes differ in how tall they want to be. */
+  height?: string;
+}
+
+const { id, label, height = 'h-[60vh] min-h-[420px]' } = Astro.props;
+---
+
+<div class:list={['relative overflow-hidden rounded-2xl border border-surface bg-surface/40', height]}>
+  <canvas
+    id={id}
+    data-scene-canvas
+    class="block h-full w-full"
+    role="img"
+    aria-label={label}></canvas>
+
+  {/* Shown when WebGL is unavailable, and always present for non-visual users. */}
+  <div
+    data-scene-fallback
+    hidden
+    class="absolute inset-0 flex items-center justify-center p-8 text-center"
+  >
+    <div class="max-w-md">
+      <slot name="fallback">
+        <p class="text-muted">
+          This scene needs WebGL, which this browser does not appear to support.
+        </p>
+      </slot>
+    </div>
+  </div>
+
+  <div
+    data-scene-hint
+    class="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-background/80 px-3 py-1 text-xs text-muted opacity-0 transition-opacity duration-500"
+  >
+    <slot name="hint">Drag to look around</slot>
+  </div>
+</div>

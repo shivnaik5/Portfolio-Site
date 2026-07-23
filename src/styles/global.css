@@ -58,9 +58,15 @@
 }
 
 @layer base {
-  html,
+  /* The base background lives on html, not body, so the home page's fixed ambient
+     canvas (a negative-z-index descendant of body) is not painted over by body's own
+     background. Every page still gets its cream from html. */
+  html {
+    @apply bg-background;
+  }
+
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply text-foreground font-sans antialiased;
   }
 
   h1,

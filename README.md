@@ -50,7 +50,9 @@ src/
   components/  UI components, grouped by page/section
   data/        Local JSON content, and the fallback for Sanity-backed content
                (site.json, home.json, about.json, resume.json, skills.json, links.json)
-  lib/         Content getters (content.js) and the Sanity client (sanity.js)
+  lib/         Content getters (content.ts), the Sanity client (sanity.ts), shared
+               types (types.ts), and the Three.js scene helpers (three/)
+  scenes/      Self-contained WebGL/Three.js scenes mounted by pages in /portfolio
   styles/      Global CSS and Tailwind setup
 public/        Static assets served as-is (fonts, favicon)
 studio/        Sanity Studio — schemas and config, deployed separately
@@ -58,6 +60,21 @@ scripts/       One-off maintenance scripts
 ```
 
 Home, about and navigation content lives in `src/data/*.json`, so that copy can be updated without touching components. Resume and skills content comes from Sanity — see below.
+
+## Home page background
+
+The home page has an optional animated WebGL backdrop ([`src/scenes/ambientBackground.ts`](src/scenes/ambientBackground.ts)). It is **off by default** — the hero shows its static CSS gradient instead — and is dependency-free (raw WebGL, ~3&nbsp;KB gzipped, no Three.js), so the landing page stays light.
+
+Turn it on for a visit by adding a `?bg=` query parameter to the home URL:
+
+| URL | Behaviour |
+| --- | --- |
+| `/` | Off (default) — static gradient only |
+| `/?bg=drift` | Slow autonomous wash, ignores the cursor |
+| `/?bg=cursor` | The wash shifts toward the pointer (parallax) |
+| `/?bg=spotlight` | A soft warm glow follows the pointer |
+
+Any unrecognised value (including `?bg=off`) leaves it off. To make a mode the permanent default, pass it to the component in [`src/pages/index.astro`](src/pages/index.astro), e.g. `<AmbientBackground mode="drift" />`. Overall strength is a single `intensity` option on `mountAmbientBackground`. It also stays off when the browser lacks WebGL or the visitor prefers reduced motion.
 
 ## Development workflow
 
