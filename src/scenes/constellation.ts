@@ -52,7 +52,6 @@ export const mountConstellation = (
   ui: {
     fallback: HTMLElement;
     hint: HTMLElement;
-    label: HTMLElement;
     legend: HTMLElement;
   },
 ) => {
@@ -143,23 +142,72 @@ export const mountConstellation = (
   let lastY = 0;
   let velocityX = 0;
   let velocityY = 0;
-  let targetRotationX = 0;
 
   const reduced = prefersReducedMotion();
   const idleSpin = reduced ? 0 : 0.12;
 
-  const setLabel = (node: Node | null) => {
-    if (!node) {
-      ui.label.innerHTML = '<span class="text-muted">Hover a node</span>';
-      return;
+  // Floating callout: a small box with a leader line back to the hovered orb, drawn as an
+  // HTML/SVG overlay above the canvas (replacing the old static label beneath it).
+  const overlayParent = canvas.parentElement ?? canvas;
+  const overlay = document.createElement('div');
+  overlay.className =
+    'pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-150';
+  const SVG_NS = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(SVG_NS, 'svg');
+  svg.setAttribute('class', 'absolute inset-0 h-full w-full overflow-visible');
+  const leader = document.createElementNS(SVG_NS, 'line');
+  leader.setAttribute('stroke', `#${palette.foreground.getHexString()}`);
+  leader.setAttribute('stroke-width', '1.5');
+  leader.setAttribute('stroke-opacity', '0.5');
+  svg.appendChild(leader);
+  const box = document.createElement('div');
+  box.className =
+    'absolute whitespace-nowrap rounded-lg border border-surface bg-background/95 px-3 py-1.5 text-sm shadow-md';
+  overlay.append(svg, box);
+  overlayParent.appendChild(overlay);
+
+  const projected = new Vector3();
+
+  const positionCallout = (node: Node) => {
+    node.mesh.getWorldPosition(projected).project(camera);
+    const w = canvas.clientWidth;
+    const h = canvas.clientHeight;
+    const ox = (projected.x * 0.5 + 0.5) * w;
+    const oy = (-projected.y * 0.5 + 0.5) * h;
+
+    // Float the box up-and-right of the orb, flipping left / clamping to stay in view.
+    const bw = box.offsetWidth;
+    const bh = box.offsetHeight;
+    let anchorX = ox + 20;
+    if (anchorX + bw > w - 6) anchorX = ox - 20 - bw;
+    anchorX = Math.max(6, anchorX);
+    let anchorY = oy - 20;
+    let top = anchorY - bh;
+    if (top < 6) {
+      top = 6;
+      anchorY = top + bh;
     }
-    const group = groups[node.groupIndex];
-    const level = node.skill.level;
-    ui.label.innerHTML =
-      `<span class="font-medium text-foreground">${node.skill.tech}</span>` +
-      `<span class="text-muted"> · ${group?.title ?? ''} · ${level}</span>`;
+
+    box.style.left = `${anchorX}px`;
+    box.style.top = `${top}px`;
+    leader.setAttribute('x1', String(ox));
+    leader.setAttribute('y1', String(oy));
+    leader.setAttribute('x2', String(anchorX));
+    leader.setAttribute('y2', String(anchorY));
   };
-  setLabel(null);
+
+  const showCallout = (node: Node) => {
+    const group = groups[node.groupIndex];
+    box.innerHTML =
+      `<span class="font-medium text-foreground">${node.skill.tech}</span>` +
+      `<span class="text-muted"> · ${group?.title ?? ''}</span>`;
+    positionCallout(node);
+    overlay.style.opacity = '1';
+  };
+
+  const hideCallout = () => {
+    overlay.style.opacity = '0';
+  };
 
   const onPointerMove = (event: PointerEvent) => {
     const rect = canvas.getBoundingClientRect();
@@ -191,6 +239,15 @@ export const mountConstellation = (
   const onPointerLeave = () => {
     pointerInside = false;
     dragging = false;
+    // The frame loop's hover test only runs while the pointer is inside, so clear the
+    // hover here — otherwise the orb stays enlarged, the callout stays up, and rotation
+    // stays frozen after the pointer has left.
+    if (hovered) {
+      hovered.mesh.scale.setScalar(1);
+      hovered = null;
+      hideCallout();
+      canvas.style.cursor = 'grab';
+    }
   };
 
   canvas.addEventListener('pointermove', onPointerMove);
@@ -212,17 +269,23 @@ export const mountConstellation = (
   canvas.addEventListener('keydown', onKeyDown);
 
   stage.onFrame((delta) => {
+    // Hovering an orb halts the constellation so it can be read; a hard stop on the flick
+    // velocity keeps the orb from drifting out from under the pointer.
+    if (hovered && !dragging) {
+      velocityX = 0;
+      velocityY = 0;
+    }
     if (!dragging) {
       // Ease the flick velocity out rather than stopping dead.
       velocityX *= 0.94;
       velocityY *= 0.94;
-      targetRotationX += idleSpin * delta;
     }
 
-    root.rotation.y += velocityY + (dragging ? 0 : idleSpin * delta);
+    const idleActive = !dragging && !hovered;
+    root.rotation.y += velocityY + (idleActive ? idleSpin * delta : 0);
     root.rotation.x = Math.max(-0.9, Math.min(0.9, root.rotation.x + velocityX));
 
-    // Hover test — skipped while dragging so the label doesn't flicker.
+    // Hover test — skipped while dragging so the callout doesn't flicker.
     if (pointerInside && !dragging) {
       raycaster.setFromCamera(pointer, camera);
       const hit = raycaster.intersectObjects(nodes.map((node) => node.mesh), false)[0];
@@ -231,11 +294,18 @@ export const mountConstellation = (
       if (next !== hovered) {
         if (hovered) hovered.mesh.scale.setScalar(1);
         hovered = next;
-        if (hovered) hovered.mesh.scale.setScalar(1.6);
-        setLabel(hovered);
+        if (hovered) {
+          hovered.mesh.scale.setScalar(1.6);
+          showCallout(hovered);
+        } else {
+          hideCallout();
+        }
         canvas.style.cursor = hovered ? 'pointer' : 'grab';
       }
     }
+
+    // Keep the callout pinned to the orb as any residual motion settles.
+    if (hovered) positionCallout(hovered);
   });
 
   stage.start();
@@ -250,6 +320,7 @@ export const mountConstellation = (
     canvas.removeEventListener('pointerup', onPointerUp);
     canvas.removeEventListener('pointerleave', onPointerLeave);
     canvas.removeEventListener('keydown', onKeyDown);
+    overlay.remove();
     stage.dispose();
   };
 };
