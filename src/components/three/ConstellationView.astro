@@ -1,0 +1,38 @@
+---
+import SceneCanvas from './SceneCanvas.astro';
+import type { ConstellationGroup } from '@/scenes/constellation';
+
+interface Props {
+  groups: ConstellationGroup[];
+  /** Distinct canvas id per instance (page vs modal). */
+  canvasId?: string;
+  /** Tailwind height classes for the canvas. */
+  height?: string;
+}
+
+const { groups, canvasId = 'constellation', height } = Astro.props;
+const total = groups.reduce((count, group) => count + group.skills.length, 0);
+---
+
+{/* The scene helper (initConstellation) finds everything below by data-attribute
+    within this wrapper, so nothing here depends on globally-unique ids. */}
+<div data-constellation-view>
+  <SceneCanvas id={canvasId} label={`A rotating 3D cluster of ${total} technology nodes`} height={height}>
+    <p slot="fallback" class="text-muted">
+      This scene needs WebGL, which this browser does not appear to support. The full skill
+      list is on the about page.
+    </p>
+    <span slot="hint">Drag to rotate · hover a node</span>
+  </SceneCanvas>
+
+  <div class="mt-4 flex flex-wrap items-center justify-between gap-4">
+    <div data-constellation-label class="text-sm"></div>
+    <div data-constellation-legend class="flex flex-wrap gap-x-4 gap-y-2"></div>
+  </div>
+
+  <script
+    type="application/json"
+    data-constellation-data
+    set:html={JSON.stringify(groups)}
+    is:inline></script>
+</div>

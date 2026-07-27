@@ -9,14 +9,41 @@ interface Props {
 const { skills } = Astro.props;
 ---
 
-<div class="mt-8 flex flex-col gap-4">
-  {
-    skills.map((group) => (
-      <div class="flex flex-wrap gap-3">
-        {group.map((skill) => (
-          <SkillChip skill={skill} />
-        ))}
-      </div>
-    ))
-  }
+<div class="mt-8">
+  <div class="mb-4 flex items-center justify-between gap-4">
+    <h3 class="font-display text-lg font-bold text-foreground">Skills &amp; Technologies</h3>
+
+    {/* Opens the 3D constellation modal — the handler lives in ConstellationModal. */}
+    <button
+      type="button"
+      data-constellation-open
+      class="group inline-flex items-center gap-2 rounded-full border border-surface bg-surface/50 px-4 py-2 text-sm font-medium text-muted transition-colors hover:border-accent/40 hover:text-accent"
+      aria-label="View skills as a 3D constellation"
+    >
+      <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="5" y1="6" x2="12" y2="13" />
+        <line x1="18" y1="5" x2="12" y2="13" />
+        <line x1="12" y1="13" x2="6" y2="18" />
+        <line x1="12" y1="13" x2="19" y2="17" />
+        <circle cx="5" cy="6" r="1.8" fill="currentColor" stroke="none" />
+        <circle cx="18" cy="5" r="1.8" fill="currentColor" stroke="none" />
+        <circle cx="12" cy="13" r="2.2" fill="currentColor" stroke="none" />
+        <circle cx="6" cy="18" r="1.8" fill="currentColor" stroke="none" />
+        <circle cx="19" cy="17" r="1.8" fill="currentColor" stroke="none" />
+      </svg>
+      <span>3D view</span>
+    </button>
+  </div>
+
+  <div class="flex flex-col gap-6">
+    {
+      skills.map((group) => (
+        <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-4">
+          {group.map((skill) => (
+            <SkillChip skill={skill} />
+          ))}
+        </div>
+      ))
+    }
+  </div>
 </div>

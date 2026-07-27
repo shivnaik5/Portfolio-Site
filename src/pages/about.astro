@@ -4,11 +4,21 @@ import BasePage from '@/components/BasePage.astro';
 import SectionHeading from '@/components/shared/SectionHeading.astro';
 import AboutMe from '@/components/about/AboutMe.astro';
 import SkillDots from '@/components/about/SkillDots/SkillDots.astro';
+import ConstellationModal from '@/components/three/ConstellationModal.astro';
 import { getAboutContent, getSkills, getSiteSettings } from '@/lib/content';
+import skillsJson from '@/data/skills.json';
+import type { SkillGroup } from '@/lib/types';
 
 const about = await getAboutContent();
 const skills = await getSkills();
 const { photoUrl } = await getSiteSettings();
+
+// The constellation needs group titles, which getSkills() flattens away.
+const titles = (skillsJson as SkillGroup[]).map((group) => group.title);
+const skillGroups = skills.map((group, index) => ({
+  title: titles[index] ?? `Group ${index + 1}`,
+  skills: group,
+}));
 ---
 
 <BaseLayout title="About — Shivang Naik">
@@ -40,4 +50,6 @@ const { photoUrl } = await getSiteSettings();
       <SkillDots skills={skills} />
     </div>
   </BasePage>
+
+  <ConstellationModal groups={skillGroups} />
 </BaseLayout>

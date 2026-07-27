@@ -1,0 +1,91 @@
+---
+import ConstellationView from './ConstellationView.astro';
+import type { ConstellationGroup } from '@/scenes/constellation';
+
+interface Props {
+  groups: ConstellationGroup[];
+}
+
+const { groups } = Astro.props;
+const total = groups.reduce((count, group) => count + group.skills.length, 0);
+---
+
+<div
+  data-constellation-modal
+  hidden
+  class="fixed inset-0 z-50 flex items-center justify-center bg-foreground/40 p-4 backdrop-blur-sm"
+>
+  <div
+    role="dialog"
+    aria-modal="true"
+    aria-label="Skills constellation"
+    class="animate-fadein flex max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-surface bg-background shadow-2xl"
+  >
+    <div class="flex items-start justify-between gap-4 border-b border-surface px-6 py-4">
+      <div>
+        <h2 class="font-display text-xl font-bold text-foreground">Skills Constellation</h2>
+        <p class="mt-1 text-sm text-muted">
+          All {total} technologies in space — node size follows how well I know each one.
+        </p>
+      </div>
+      <button
+        type="button"
+        data-constellation-close
+        class="flex-shrink-0 rounded-full p-2 text-muted transition-colors hover:bg-surface hover:text-foreground"
+        aria-label="Close constellation"
+      >
+        <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="6" y1="6" x2="18" y2="18" />
+          <line x1="18" y1="6" x2="6" y2="18" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="overflow-y-auto px-6 py-5">
+      <ConstellationView groups={groups} canvasId="constellation-modal" height="h-[55vh] min-h-[360px]" />
+    </div>
+  </div>
+</div>
+
+<script>
+  const modal = document.querySelector<HTMLElement>('[data-constellation-modal]');
+  const view = modal?.querySelector<HTMLElement>('[data-constellation-view]');
+
+  if (modal && view) {
+    let mounted = false;
+
+    const open = async () => {
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+
+      // Load Three.js and mount only on first open, so the about page ships no 3D code
+      // until the visitor actually asks for it. rAF lets the modal lay out first so the
+      // canvas has a real size to size the renderer against.
+      if (!mounted) {
+        mounted = true;
+        const { initConstellation } = await import('@/scenes/initConstellation');
+        requestAnimationFrame(() => initConstellation(view));
+      }
+    };
+
+    const close = () => {
+      modal.hidden = true;
+      document.body.style.overflow = '';
+    };
+
+    document
+      .querySelectorAll('[data-constellation-open]')
+      .forEach((btn) => btn.addEventListener('click', open));
+    modal
+      .querySelectorAll('[data-constellation-close]')
+      .forEach((btn) => btn.addEventListener('click', close));
+
+    // Click on the backdrop (outside the dialog) closes.
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) close();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !modal.hidden) close();
+    });
+  }
+</script>

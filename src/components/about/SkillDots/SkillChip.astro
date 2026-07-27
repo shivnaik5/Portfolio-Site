@@ -15,7 +15,18 @@ const competency = getCompetencyLevel(level);
   class="group flex items-center gap-3 rounded-2xl border border-surface bg-surface/50 px-4 py-3 transition-transform duration-200 hover:scale-105"
   aria-label={`${tech}: ${competency.label}`}
 >
-  <i class={`devicon-${icon} text-2xl text-foreground`} aria-hidden="true" />
+  {/* Two stacked icons: monochrome by default, the brand-coloured devicon fading in on
+      hover. Every skill icon has a `.colored` variant, so none render blank. */}
+  <span class="relative inline-flex text-2xl">
+    <i
+      class={`devicon-${icon} text-foreground transition-opacity duration-200 group-hover:opacity-0`}
+      aria-hidden="true"
+    />
+    <i
+      class={`devicon-${icon} colored absolute inset-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100`}
+      aria-hidden="true"
+    />
+  </span>
   <div class="flex flex-col">
     <span class="text-sm font-medium text-foreground">{tech}</span>
     <div class="mt-1 flex gap-1">
